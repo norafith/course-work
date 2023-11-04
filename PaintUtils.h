@@ -5,22 +5,28 @@
 
 #include <System.UITypes.hpp>
 
+class PaintState {
+	private:
+    enum class PaintMode {
+			CIRCLE,
+			ERASER,
+			LINE,
+			RECTANGLE,
+			BRUSH
+		};
 
-enum class PaintMode {
-	CIRCLE,
-	ERASER,
-	LINE,
-	RECTANGLE,
-	BRUSH
-};
-
-class PaintOptions {
 	public:
+		bool isDrawing;
+		float xPos;
+    float yPos;
+
 		PaintMode paintMode;
 		TColor foregroundColor;
 		TColor backgroundColor;
+
+		void onMouseMove();
+		void onMouseDown();
+		void onMouseUp();
 };
-
-
 
 #endif

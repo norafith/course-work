@@ -3,27 +3,12 @@
 #pragma hdrstop
 
 #include "FileHandlingUtils.h"
-#include <Vcl.ExtDlgs.hpp>
 #include <pngimage.hpp>
 #include <jpeg.hpp>
 #include <GIFimg.hpp>
 #include <System.IOUtils.hpp>
 
-class FileHandler {
-	private:
-		enum class FileExtensionIndex {
-			PNG = 1,
-			JPG = 2,
-			JPEG = 3,
-			GIF = 4,
-			BMP = 5,
-			CUSTOM = 6,
-		};
-
-		String selectedExtension;
-
-	public:
-		void setSelectedExtension(TSavePictureDialog* SaveMainImageDialog) {
+void FileHandler::setSelectedExtension(TSavePictureDialog* SaveMainImageDialog) {
 			switch (static_cast<FileExtensionIndex>(SaveMainImageDialog->FilterIndex)) {
 				case FileExtensionIndex::GIF:
 					selectedExtension = L".gif";
@@ -46,7 +31,7 @@ class FileHandler {
 			}
     }
 
-		void saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* MainImage) {
+void FileHandler::saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* MainImage) {
 			if (!SaveMainImageDialog->Execute()) return;
 			SaveMainImageDialog->FileName += selectedExtension;
 			String fileExtension = Ioutils::TPath::GetExtension(SaveMainImageDialog->FileName);
@@ -75,11 +60,10 @@ class FileHandler {
 			}
 		}
 
-		void loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage) {
+void FileHandler::loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage) {
       if (!OpenMainImageDialog->Execute()) return;
 			MainImage->Picture->LoadFromFile(OpenMainImageDialog->FileName);
 		}
-};
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
