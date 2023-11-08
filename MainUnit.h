@@ -28,10 +28,10 @@ __published:	// IDE-managed Components
 	TSpeedButton *SelectLine;
 	TSpeedButton *SelectRectangle;
 	TSpeedButton *SelectCircle;
-	TTrackBar *TrackBar1;
+	TTrackBar *SetThicknessBar;
 	TTrackBar *TrackBar2;
 	TLabel *Label1;
-	TColorGrid *ColorGrid1;
+	TColorGrid *ColorGrid;
 	TLabel *Label2;
 	TMainMenu *MainMenu1;
 	TMenuItem *N1;
@@ -39,7 +39,7 @@ __published:	// IDE-managed Components
 	TMenuItem *LoadFileMenuItem;
 	TSavePictureDialog *SaveMainImageDialog;
 	TOpenPictureDialog *OpenMainImageDialog;
-	TColorBox *ColorBox1;
+	TColorBox *SelectBackgroundColor;
 	TLabel *Label3;
 	TImage *CanvasImage;
 	void __fastcall SelectCircleClick(TObject *Sender);
@@ -56,6 +56,9 @@ __published:	// IDE-managed Components
           int Y);
 	void __fastcall CanvasImageMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
           int X, int Y);
+	void __fastcall ColorGridChange(TObject *Sender);
+	void __fastcall SetThicknessBarChange(TObject *Sender);
+	void __fastcall SelectBackgroundColorChange(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TMainForm(TComponent* Owner);

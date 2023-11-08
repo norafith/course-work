@@ -79,14 +79,14 @@ void __fastcall TMainForm::SelectBrushClick(TObject *Sender)
 void __fastcall TMainForm::CanvasImageMouseDown(TObject *Sender, TMouseButton Button,
 					TShiftState Shift, int X, int Y)
 {
-	globalPaintState.onMouseDown(X, Y);
+	globalPaintState.onMouseDown(X, Y, MainImage);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TMainForm::CanvasImageMouseMove(TObject *Sender, TShiftState Shift,
 					int X, int Y)
 {
-	globalPaintState.onMouseMove(X, Y, CanvasImage);
+	globalPaintState.onMouseMove(X, Y, CanvasImage, MainImage);
 }
 //---------------------------------------------------------------------------
 
@@ -95,6 +95,27 @@ void __fastcall TMainForm::CanvasImageMouseUp(TObject *Sender, TMouseButton Butt
           TShiftState Shift, int X, int Y)
 {
   globalPaintState.onMouseUp(X, Y, CanvasImage, MainImage);
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TMainForm::ColorGridChange(TObject *Sender)
+{
+	globalPaintState.setColors(ColorGrid->ForegroundColor, ColorGrid->BackgroundColor);
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TMainForm::SetThicknessBarChange(TObject *Sender)
+{
+  globalPaintState.setThickness(SetThicknessBar->Position);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::SelectBackgroundColorChange(TObject *Sender)
+{
+	globalPaintState.setBackgroundColor(SelectBackgroundColor->Selected, CanvasImage, MainImage);
 }
 //---------------------------------------------------------------------------
 

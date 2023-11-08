@@ -2,8 +2,8 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = #1043#1088#1072#1092#1080#1095#1077#1089#1082#1080#1081' '#1088#1077#1076#1072#1082#1090#1086#1088
-  ClientHeight = 488
-  ClientWidth = 635
+  ClientHeight = 492
+  ClientWidth = 655
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -2861,13 +2861,12 @@ object MainForm: TMainForm
     OnMouseMove = CanvasImageMouseMove
     OnMouseUp = CanvasImageMouseUp
   end
-  object TrackBar1: TTrackBar
+  object SetThicknessBar: TTrackBar
     Left = 519
     Top = 224
     Width = 116
     Height = 50
     Ctl3D = True
-    Max = 5
     Min = 1
     ParentCtl3D = False
     ParentShowHint = False
@@ -2875,6 +2874,7 @@ object MainForm: TMainForm
     ShowHint = False
     TabOrder = 0
     TickMarks = tmTopLeft
+    OnChange = SetThicknessBarChange
   end
   object TrackBar2: TTrackBar
     Left = 560
@@ -2883,21 +2883,24 @@ object MainForm: TMainForm
     Height = 1
     TabOrder = 1
   end
-  object ColorGrid1: TColorGrid
+  object ColorGrid: TColorGrid
     Left = 519
     Top = 366
     Width = 112
     Height = 112
     ClickEnablesColor = True
     TabOrder = 2
+    OnChange = ColorGridChange
   end
-  object ColorBox1: TColorBox
+  object SelectBackgroundColor: TColorBox
     Left = 519
     Top = 309
     Width = 116
     Height = 22
+    DefaultColorColor = clDefault
     Style = [cbStandardColors]
     TabOrder = 3
+    OnChange = SelectBackgroundColorChange
   end
   object MainMenu1: TMainMenu
     Left = 464

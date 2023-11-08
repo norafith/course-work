@@ -16,7 +16,14 @@ enum class PaintMode {
 
 class PaintState {
 	private:
-    void draw(int X, int Y, TImage* Image);
+		TColor paintColor = clBlack;
+		TColor outlineColor = clBlack;
+		TColor backgroundColor = clWhite;
+
+		int brushThickness = 1;
+    int brushThicknessMultiplier = 3;
+
+		void draw(int X, int Y, TImage* Image);
 
 	public:
 		bool isDrawing;
@@ -24,13 +31,15 @@ class PaintState {
 		int posY;
 
 		PaintMode paintMode = PaintMode::ELLIPSE;
-		TColor paintColor = clWhite;
-		TColor backgroundColor;
-    int opacity;
 
-		void onMouseMove(int X, int Y, TImage* CanvasImage);
-		void onMouseDown(int X, int Y);
+		void onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImage);
+		void onMouseDown(int X, int Y, TImage* MainImage);
 		void onMouseUp(int X, int Y, TImage* CanvasImage, TImage* MainImage);
+
+		void setColors(TColor paintColorValue, TColor outlineColorValue);
+		void setThickness(int thicknessValue);
+
+    void setBackgroundColor(TColor backgroundColorValue, TImage* CanvasImage, TImage* MainImage);
 };
 
 #endif
