@@ -41,10 +41,21 @@ __published:	// IDE-managed Components
 	TOpenPictureDialog *OpenMainImageDialog;
 	TColorBox *ColorBox1;
 	TLabel *Label3;
+	TImage *CanvasImage;
 	void __fastcall SelectCircleClick(TObject *Sender);
 	void __fastcall SaveAsMenuItemClick(TObject *Sender);
 	void __fastcall LoadFileMenuItemClick(TObject *Sender);
 	void __fastcall SaveMainImageDialogTypeChange(TObject *Sender);
+	void __fastcall SelectEraserClick(TObject *Sender);
+	void __fastcall SelectLineClick(TObject *Sender);
+	void __fastcall SelectRectangleClick(TObject *Sender);
+	void __fastcall SelectBrushClick(TObject *Sender);
+	void __fastcall CanvasImageMouseDown(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y);
+	void __fastcall CanvasImageMouseMove(TObject *Sender, TShiftState Shift, int X,
+          int Y);
+	void __fastcall CanvasImageMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
+          int X, int Y);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TMainForm(TComponent* Owner);

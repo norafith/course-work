@@ -2,8 +2,8 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = #1043#1088#1072#1092#1080#1095#1077#1089#1082#1080#1081' '#1088#1077#1076#1072#1082#1090#1086#1088
-  ClientHeight = 480
-  ClientWidth = 634
+  ClientHeight = 488
+  ClientWidth = 635
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -2301,6 +2301,7 @@ object MainForm: TMainForm
     ParentShowHint = False
     ShowHint = True
     Transparent = False
+    OnClick = SelectBrushClick
   end
   object SelectEraser: TSpeedButton
     Left = 585
@@ -2427,6 +2428,7 @@ object MainForm: TMainForm
     ParentShowHint = False
     ShowHint = True
     Transparent = False
+    OnClick = SelectEraserClick
   end
   object SelectLine: TSpeedButton
     Left = 519
@@ -2553,6 +2555,7 @@ object MainForm: TMainForm
     ParentShowHint = False
     ShowHint = True
     Transparent = False
+    OnClick = SelectLineClick
   end
   object SelectRectangle: TSpeedButton
     Left = 585
@@ -2679,6 +2682,7 @@ object MainForm: TMainForm
     ParentShowHint = False
     ShowHint = True
     Transparent = False
+    OnClick = SelectRectangleClick
   end
   object SelectCircle: TSpeedButton
     Left = 519
@@ -2847,6 +2851,15 @@ object MainForm: TMainForm
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
+  end
+  object CanvasImage: TImage
+    Left = 16
+    Top = 24
+    Width = 481
+    Height = 456
+    OnMouseDown = CanvasImageMouseDown
+    OnMouseMove = CanvasImageMouseMove
+    OnMouseUp = CanvasImageMouseUp
   end
   object TrackBar1: TTrackBar
     Left = 519
