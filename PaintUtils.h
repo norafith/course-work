@@ -4,7 +4,9 @@
 #define PaintUtilsH
 
 #include <System.UITypes.hpp>
-#include "MainUnit.h"
+#include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.ExtCtrls.hpp>
 
 enum class PaintMode {
 	ELLIPSE,
@@ -20,8 +22,8 @@ class PaintState {
 		TColor outlineColor = clBlack;
 		TColor backgroundColor = clWhite;
 
-		int brushThickness = 1;
-    int brushThicknessMultiplier = 3;
+		int penThickness = 1;
+    int penThicknessMultiplier = 3;
 
 		void draw(int X, int Y, TImage* Image);
 
@@ -35,6 +37,7 @@ class PaintState {
 		void onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImage);
 		void onMouseDown(int X, int Y, TImage* MainImage);
 		void onMouseUp(int X, int Y, TImage* CanvasImage, TImage* MainImage);
+    void onFormResize(TImage* CanvasImage, TImage* MainImage, TForm* MainForm, TPanel* ToolPanel);
 
 		void setColors(TColor paintColorValue, TColor outlineColorValue);
 		void setThickness(int thicknessValue);

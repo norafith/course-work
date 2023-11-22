@@ -2,7 +2,9 @@
 
 #ifndef FileHandlingUtilsH
 #define FileHandlingUtilsH
-#include "MainUnit.h"
+#include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.ExtDlgs.hpp>
+#include <Vcl.ExtCtrls.hpp>
 //---------------------------------------------------------------------------
 
 class FileHandler {
@@ -23,7 +25,7 @@ class FileHandler {
 
 		void saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* MainImage);
 
-		void loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage);
+		void loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage, TImage* CanvasImage);
 };
 
 #endif

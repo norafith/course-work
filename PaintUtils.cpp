@@ -7,7 +7,8 @@
 void PaintState::draw(int X, int Y, TImage* Image) {
 	Image->Picture->Bitmap->Canvas->Brush->Color = paintColor;
 	Image->Picture->Bitmap->Canvas->Pen->Color = outlineColor;
-	int thicknessAdditive = brushThickness * brushThicknessMultiplier;
+  Image->Picture->Bitmap->Canvas->Pen->Width = penThickness;
+	int thicknessAdditive = penThickness * penThicknessMultiplier;
 
 	switch (paintMode) {
 		case PaintMode::ELLIPSE:
@@ -63,9 +64,10 @@ void PaintState::onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImag
 	if (paintMode == PaintMode::BRUSH || paintMode == PaintMode::ERASER) {
 		draw(X, Y, MainImage);
 	}
-	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
-	CanvasImage->Picture->Bitmap->Canvas->Rectangle(0, 0, CanvasImage->Width, CanvasImage->Height);
-	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
+//	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
+//	CanvasImage->Picture->Bitmap->Canvas->Rectangle(0, 0, CanvasImage->Width, CanvasImage->Height);
+//	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
+  CanvasImage->Picture->Bitmap->Assign(MainImage->Picture->Bitmap);
 	draw(X, Y, CanvasImage);
 }
 
@@ -75,15 +77,32 @@ void PaintState::onMouseUp(int X, int Y, TImage* CanvasImage, TImage* MainImage)
 		isDrawing = false;
 		return;
 	}
-
-	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
-	CanvasImage->Picture->Bitmap->Canvas->Rectangle(0, 0, CanvasImage->Width, CanvasImage->Height);
-	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
+//
+//	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
+//	CanvasImage->Picture->Bitmap->Canvas->Rectangle(0, 0, CanvasImage->Width, CanvasImage->Height);
+//	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
 
 	draw(X, Y, MainImage);
+  CanvasImage->Picture->Bitmap->Assign(MainImage->Picture->Bitmap);
 
 	isDrawing = false;
 }
+
+void PaintState::onFormResize(TImage* CanvasImage, TImage* MainImage, TForm* MainForm, TPanel* ToolPanel) {
+	MainImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
+	MainImage->Width = MainForm->Width - ToolPanel->Width - 5;
+	MainImage->Picture->Bitmap->Width = MainForm->ClientWidth - ToolPanel->Width - 5;
+	MainImage->Height = MainForm->Height;
+	MainImage->Picture->Bitmap->Height = MainForm->ClientHeight;
+	MainImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
+
+	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
+	CanvasImage->Width = MainForm->Width - ToolPanel->Width - 5;
+	CanvasImage->Picture->Bitmap->Width = MainForm->ClientWidth - ToolPanel->Width - 5;
+	CanvasImage->Height = MainForm->Height;
+	CanvasImage->Picture->Bitmap->Height = MainForm->ClientHeight;
+	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
+ }
 
 void PaintState::setColors(TColor paintColorValue, TColor outlineColorValue) {
 	paintColor = paintColorValue;
@@ -91,7 +110,7 @@ void PaintState::setColors(TColor paintColorValue, TColor outlineColorValue) {
 }
 
 void PaintState::setThickness(int thicknessValue) {
-	brushThickness = thicknessValue;
+	penThickness = thicknessValue;
 }
 
 void PaintState::setBackgroundColor(TColor backgroundColorValue, TImage* CanvasImage, TImage* MainImage) {

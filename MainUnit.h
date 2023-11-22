@@ -18,30 +18,34 @@
 #include <Vcl.Menus.hpp>
 #include <Vcl.Dialogs.hpp>
 #include <Vcl.ExtDlgs.hpp>
+
+#include "FileHandlingUtils.h"
+#include "PaintUtils.h"
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
 {
 __published:	// IDE-managed Components
 	TImage *MainImage;
-	TSpeedButton *SelectBrush;
-	TSpeedButton *SelectEraser;
-	TSpeedButton *SelectLine;
-	TSpeedButton *SelectRectangle;
-	TSpeedButton *SelectCircle;
-	TTrackBar *SetThicknessBar;
 	TTrackBar *TrackBar2;
-	TLabel *Label1;
-	TColorGrid *ColorGrid;
-	TLabel *Label2;
 	TMainMenu *MainMenu1;
 	TMenuItem *N1;
 	TMenuItem *SaveAsMenuItem;
 	TMenuItem *LoadFileMenuItem;
 	TSavePictureDialog *SaveMainImageDialog;
 	TOpenPictureDialog *OpenMainImageDialog;
+	TImage *CanvasImage;
+	TPanel *ToolPanel;
+	TColorGrid *ColorGrid;
+	TLabel *Label2;
 	TColorBox *SelectBackgroundColor;
 	TLabel *Label3;
-	TImage *CanvasImage;
+	TTrackBar *SetThicknessBar;
+	TLabel *Label1;
+	TSpeedButton *SelectBrush;
+	TSpeedButton *SelectRectangle;
+	TSpeedButton *SelectLine;
+	TSpeedButton *SelectEraser;
+	TSpeedButton *SelectCircle;
 	void __fastcall SelectCircleClick(TObject *Sender);
 	void __fastcall SaveAsMenuItemClick(TObject *Sender);
 	void __fastcall LoadFileMenuItemClick(TObject *Sender);
@@ -59,8 +63,11 @@ __published:	// IDE-managed Components
 	void __fastcall ColorGridChange(TObject *Sender);
 	void __fastcall SetThicknessBarChange(TObject *Sender);
 	void __fastcall SelectBackgroundColorChange(TObject *Sender);
+	void __fastcall FormResize(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
+	FileHandler globalFileHandler;
+	PaintState globalPaintState;
 	__fastcall TMainForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------

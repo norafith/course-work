@@ -4,17 +4,12 @@
 #pragma hdrstop
 
 #include "MainUnit.h"
-#include "FileHandlingUtils.h"
-#include "PaintUtils.h"
 
 #pragma package(smart_init)
 #pragma link "cgrid"
 #pragma resource "*.dfm"
 
 TMainForm *MainForm;
-
-FileHandler globalFileHandler;
-PaintState globalPaintState;
 
 // create empty bitmap at load
 __fastcall TMainForm::TMainForm(TComponent* Owner)
@@ -46,7 +41,7 @@ void __fastcall TMainForm::SaveAsMenuItemClick(TObject *Sender)
 // load image in canvas
 void __fastcall TMainForm::LoadFileMenuItemClick(TObject *Sender)
 {
-	globalFileHandler.loadImage(SaveMainImageDialog, MainImage);
+	globalFileHandler.loadImage(SaveMainImageDialog, MainImage, CanvasImage);
 
 }
 
@@ -118,4 +113,12 @@ void __fastcall TMainForm::SelectBackgroundColorChange(TObject *Sender)
 	globalPaintState.setBackgroundColor(SelectBackgroundColor->Selected, CanvasImage, MainImage);
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TMainForm::FormResize(TObject *Sender)
+{
+  globalPaintState.onFormResize(CanvasImage, MainImage, MainForm, ToolPanel);
+}
+
+//---------------------------------------------------------------------------
+
 

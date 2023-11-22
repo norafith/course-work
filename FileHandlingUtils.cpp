@@ -7,29 +7,30 @@
 #include <jpeg.hpp>
 #include <GIFimg.hpp>
 #include <System.IOUtils.hpp>
+#include <Vcl.GraphUtil.hpp>
 
 void FileHandler::setSelectedExtension(TSavePictureDialog* SaveMainImageDialog) {
-			switch (static_cast<FileExtensionIndex>(SaveMainImageDialog->FilterIndex)) {
-				case FileExtensionIndex::GIF:
-					selectedExtension = L".gif";
-					break;
-				case FileExtensionIndex::JPEG:
-					selectedExtension = L".jpeg";
-					break;
-				case FileExtensionIndex::JPG:
-					selectedExtension = L".jpg";
-					break;
-				case FileExtensionIndex::PNG:
-					selectedExtension = L".png";
-					break;
-				case FileExtensionIndex::BMP:
-					selectedExtension = L".bmp";
-					break;
-				case FileExtensionIndex::CUSTOM:
-					selectedExtension = L"";
-					break;
-			}
-    }
+	switch (static_cast<FileExtensionIndex>(SaveMainImageDialog->FilterIndex)) {
+		case FileExtensionIndex::GIF:
+			selectedExtension = L".gif";
+			break;
+		case FileExtensionIndex::JPEG:
+			selectedExtension = L".jpeg";
+			break;
+		case FileExtensionIndex::JPG:
+			selectedExtension = L".jpg";
+			break;
+		case FileExtensionIndex::PNG:
+			selectedExtension = L".png";
+			break;
+		case FileExtensionIndex::BMP:
+			selectedExtension = L".bmp";
+			break;
+		case FileExtensionIndex::CUSTOM:
+			selectedExtension = L"";
+			break;
+	}
+}
 
 void FileHandler::saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* MainImage) {
 			if (!SaveMainImageDialog->Execute()) return;
@@ -60,10 +61,34 @@ void FileHandler::saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* Ma
 			}
 		}
 
-void FileHandler::loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage) {
-      if (!OpenMainImageDialog->Execute()) return;
-			MainImage->Picture->LoadFromFile(OpenMainImageDialog->FileName);
-		}
+void FileHandler::loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage, TImage* CanvasImage) {
+	if (!OpenMainImageDialog->Execute()) return;
+
+
+	TWICImage* tmpImage = new TWICImage;
+	tmpImage->LoadFromFile(OpenMainImageDialog->FileName);
+
+	tmpImage = tmpImage->CreateScaledCopy(MainImage->Width, MainImage->Height);
+
+//	TBitmap* tmpBitmap = new TBitmap;
+//	tmpBitmap->Assign(tmpScalingImage);
+
+	MainImage->Picture->Graphic->Assign(tmpImage);
+	CanvasImage->Picture->Graphic->Assign(tmpImage);
+
+//	tmpBitmap->Free();
+	tmpImage->Free();
+//
+//	MainImage->Picture->LoadFromFile(OpenMainImageDialog->FileName);
+//
+//	TBitmap* tmpBitmap = new TBitmap;
+//
+//	tmpBitmap->Assign(MainImage->Picture->Graphic);
+//  MainImage->Picture->Bitmap->Assign(tmpBitmap);
+//	CanvasImage->Picture->Bitmap->Assign(tmpBitmap);
+//
+//  tmpBitmap->Free();
+}
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
