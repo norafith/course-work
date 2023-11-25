@@ -46,6 +46,7 @@ __published:	// IDE-managed Components
 	TSpeedButton *SelectLine;
 	TSpeedButton *SelectEraser;
 	TSpeedButton *SelectCircle;
+	TSpeedButton *SelectFill;
 	void __fastcall SelectCircleClick(TObject *Sender);
 	void __fastcall SaveAsMenuItemClick(TObject *Sender);
 	void __fastcall LoadFileMenuItemClick(TObject *Sender);
@@ -64,6 +65,7 @@ __published:	// IDE-managed Components
 	void __fastcall SetThicknessBarChange(TObject *Sender);
 	void __fastcall SelectBackgroundColorChange(TObject *Sender);
 	void __fastcall FormResize(TObject *Sender);
+	void __fastcall SelectFillClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	FileHandler globalFileHandler;

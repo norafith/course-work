@@ -76,6 +76,9 @@ void FileHandler::loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* Mai
 	MainImage->Picture->Graphic->Assign(tmpImage);
 	CanvasImage->Picture->Graphic->Assign(tmpImage);
 
+	MainImage->Picture->Bitmap->AlphaFormat = afIgnored;
+	CanvasImage->Picture->Bitmap->AlphaFormat = afIgnored;
+
 //	tmpBitmap->Free();
 	tmpImage->Free();
 //

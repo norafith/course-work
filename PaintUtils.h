@@ -13,7 +13,8 @@ enum class PaintMode {
 	ERASER,
 	LINE,
 	RECTANGLE,
-	BRUSH
+	BRUSH,
+  FILL
 };
 
 class PaintState {
@@ -35,7 +36,7 @@ class PaintState {
 		PaintMode paintMode = PaintMode::ELLIPSE;
 
 		void onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImage);
-		void onMouseDown(int X, int Y, TImage* MainImage);
+		void onMouseDown(int X, int Y, TImage* CanvasImage, TImage* MainImage);
 		void onMouseUp(int X, int Y, TImage* CanvasImage, TImage* MainImage);
     void onFormResize(TImage* CanvasImage, TImage* MainImage, TForm* MainForm, TPanel* ToolPanel);
 

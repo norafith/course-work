@@ -44,10 +44,20 @@ void PaintState::draw(int X, int Y, TImage* Image) {
 				Y + thicknessAdditive
 			);
 			break;
+
+		case PaintMode::FILL:
+      TColor colorToFill = Image->Picture->Bitmap->Canvas->Pixels[X][Y];
+			Image->Picture->Bitmap->Canvas->FloodFill(X, Y, colorToFill, fsSurface);
+		break;
 	}
 }
 
-void PaintState::onMouseDown(int X, int Y, TImage* MainImage) {
+void PaintState::onMouseDown(int X, int Y, TImage* CanvasImage, TImage* MainImage) {
+	if (paintMode == PaintMode::FILL) {
+    draw(X, Y, CanvasImage);
+		draw(X, Y, MainImage);
+    return;
+	}
 	isDrawing = true;
 	posX = X;
 	posY = Y;
@@ -59,7 +69,7 @@ void PaintState::onMouseDown(int X, int Y, TImage* MainImage) {
 }
 
 void PaintState::onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImage) {
-	if (!isDrawing) return;
+	if (!isDrawing || paintMode == PaintMode::FILL) return;
 
 	if (paintMode == PaintMode::BRUSH || paintMode == PaintMode::ERASER) {
 		draw(X, Y, MainImage);
@@ -67,12 +77,12 @@ void PaintState::onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImag
 //	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
 //	CanvasImage->Picture->Bitmap->Canvas->Rectangle(0, 0, CanvasImage->Width, CanvasImage->Height);
 //	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
-  CanvasImage->Picture->Bitmap->Assign(MainImage->Picture->Bitmap);
+	CanvasImage->Picture->Bitmap->Assign(MainImage->Picture->Bitmap);
 	draw(X, Y, CanvasImage);
 }
 
 void PaintState::onMouseUp(int X, int Y, TImage* CanvasImage, TImage* MainImage) {
-	if (!isDrawing) return;
+	if (!isDrawing || paintMode == PaintMode::FILL) return;
 	if (paintMode == PaintMode::BRUSH || paintMode == PaintMode::ERASER) {
 		isDrawing = false;
 		return;

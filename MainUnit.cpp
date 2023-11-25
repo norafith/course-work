@@ -11,7 +11,6 @@
 
 TMainForm *MainForm;
 
-// create empty bitmap at load
 __fastcall TMainForm::TMainForm(TComponent* Owner)
 	: TForm(Owner)
 {
@@ -26,19 +25,16 @@ void __fastcall TMainForm::SelectCircleClick(TObject *Sender)
 	globalPaintState.paintMode = PaintMode::ELLIPSE;
 }
 
-// track which image type is selected
 void __fastcall TMainForm::SaveMainImageDialogTypeChange(TObject *Sender)
 {
 	globalFileHandler.setSelectedExtension(SaveMainImageDialog);
 }
 
-// save canvas image depending on selected extension
 void __fastcall TMainForm::SaveAsMenuItemClick(TObject *Sender)
 {
 	globalFileHandler.saveCanvas(SaveMainImageDialog, MainImage);
 }
 
-// load image in canvas
 void __fastcall TMainForm::LoadFileMenuItemClick(TObject *Sender)
 {
 	globalFileHandler.loadImage(SaveMainImageDialog, MainImage, CanvasImage);
@@ -53,7 +49,7 @@ void __fastcall TMainForm::SelectEraserClick(TObject *Sender)
 
 void __fastcall TMainForm::SelectLineClick(TObject *Sender)
 {
-  globalPaintState.paintMode = PaintMode::LINE;
+	globalPaintState.paintMode = PaintMode::LINE;
 }
 
 
@@ -74,7 +70,7 @@ void __fastcall TMainForm::SelectBrushClick(TObject *Sender)
 void __fastcall TMainForm::CanvasImageMouseDown(TObject *Sender, TMouseButton Button,
 					TShiftState Shift, int X, int Y)
 {
-	globalPaintState.onMouseDown(X, Y, MainImage);
+	globalPaintState.onMouseDown(X, Y, CanvasImage, MainImage);
 }
 //---------------------------------------------------------------------------
 
@@ -121,4 +117,10 @@ void __fastcall TMainForm::FormResize(TObject *Sender)
 
 //---------------------------------------------------------------------------
 
+
+void __fastcall TMainForm::SelectFillClick(TObject *Sender)
+{
+  globalPaintState.paintMode = PaintMode::FILL;
+}
+//---------------------------------------------------------------------------
 
