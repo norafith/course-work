@@ -18,6 +18,9 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	MainImage->Picture->Assign(tmpBitmap);
 	CanvasImage->Picture->Assign(tmpBitmap);
 	tmpBitmap->Free();
+
+//	MainImage->Picture->Bitmap->Canvas->CopyMode = cmSrcPaint;
+//	CanvasImage->Picture->Bitmap->Canvas->CopyMode = cmSrcPaint;
 }
 
 void __fastcall TMainForm::SelectCircleClick(TObject *Sender)
@@ -123,4 +126,3 @@ void __fastcall TMainForm::SelectFillClick(TObject *Sender)
   globalPaintState.paintMode = PaintMode::FILL;
 }
 //---------------------------------------------------------------------------
-

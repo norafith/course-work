@@ -77,8 +77,10 @@ void PaintState::onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImag
 //	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
 //	CanvasImage->Picture->Bitmap->Canvas->Rectangle(0, 0, CanvasImage->Width, CanvasImage->Height);
 //	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
-	CanvasImage->Picture->Bitmap->Assign(MainImage->Picture->Bitmap);
+	TRect tmpRect = Rect(Point(posX, posY), Point(X, Y));
+	CanvasImage->Picture->Bitmap->Canvas->CopyRect(tmpRect, MainImage->Picture->Bitmap->Canvas, tmpRect);
 	draw(X, Y, CanvasImage);
+
 }
 
 void PaintState::onMouseUp(int X, int Y, TImage* CanvasImage, TImage* MainImage) {
@@ -91,10 +93,12 @@ void PaintState::onMouseUp(int X, int Y, TImage* CanvasImage, TImage* MainImage)
 //	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
 //	CanvasImage->Picture->Bitmap->Canvas->Rectangle(0, 0, CanvasImage->Width, CanvasImage->Height);
 //	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
-
+//
 	draw(X, Y, MainImage);
-  CanvasImage->Picture->Bitmap->Assign(MainImage->Picture->Bitmap);
+  TRect tmpRect = Rect(Point(posX, posY), Point(X, Y));
+	CanvasImage->Picture->Bitmap->Canvas->CopyRect(tmpRect, MainImage->Picture->Bitmap->Canvas, tmpRect);
 
+//  draw(X, Y, MainImage);
 	isDrawing = false;
 }
 
