@@ -28,4 +28,5 @@ class FileHandler {
 		void loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage, TImage* CanvasImage);
 };
 
+extern FileHandler globalFileHandler;
 #endif

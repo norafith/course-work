@@ -17,10 +17,10 @@ __fastcall TMainForm::TMainForm(TComponent* Owner)
 	TBitmap* tmpBitmap = new TBitmap(MainImage->Width, MainImage->Height);
 	MainImage->Picture->Assign(tmpBitmap);
 	CanvasImage->Picture->Assign(tmpBitmap);
-	tmpBitmap->Free();
 
-//	MainImage->Picture->Bitmap->Canvas->CopyMode = cmSrcPaint;
-//	CanvasImage->Picture->Bitmap->Canvas->CopyMode = cmSrcPaint;
+	globalPaintState.setFont(tmpBitmap->Canvas->Font);
+
+	tmpBitmap->Free();
 }
 
 void __fastcall TMainForm::SelectCircleClick(TObject *Sender)
@@ -126,3 +126,19 @@ void __fastcall TMainForm::SelectFillClick(TObject *Sender)
   globalPaintState.paintMode = PaintMode::FILL;
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TMainForm::GradientBackgroundButtonClick(TObject *Sender)
+{
+  GradientForm->Show();
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TMainForm::SelectTextClick(TObject *Sender)
+{
+  DrawTextForm->Show();
+}
+
+
+//---------------------------------------------------------------------------
+

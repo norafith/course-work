@@ -9,6 +9,8 @@
 #include <System.IOUtils.hpp>
 #include <Vcl.GraphUtil.hpp>
 
+FileHandler globalFileHandler;
+
 void FileHandler::setSelectedExtension(TSavePictureDialog* SaveMainImageDialog) {
 	switch (static_cast<FileExtensionIndex>(SaveMainImageDialog->FilterIndex)) {
 		case FileExtensionIndex::GIF:

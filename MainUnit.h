@@ -21,13 +21,16 @@
 
 #include "FileHandlingUtils.h"
 #include "PaintUtils.h"
+#include "GradientUnit.h"
+#include "DrawTextUnit.h"
+
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
 {
 __published:	// IDE-managed Components
 	TImage *MainImage;
 	TTrackBar *TrackBar2;
-	TMainMenu *MainMenu1;
+	TMainMenu *MainMenu;
 	TMenuItem *N1;
 	TMenuItem *SaveAsMenuItem;
 	TMenuItem *LoadFileMenuItem;
@@ -47,6 +50,8 @@ __published:	// IDE-managed Components
 	TSpeedButton *SelectEraser;
 	TSpeedButton *SelectCircle;
 	TSpeedButton *SelectFill;
+	TButton *GradientBackgroundButton;
+	TSpeedButton *SelectText;
 	void __fastcall SelectCircleClick(TObject *Sender);
 	void __fastcall SaveAsMenuItemClick(TObject *Sender);
 	void __fastcall LoadFileMenuItemClick(TObject *Sender);
@@ -66,13 +71,16 @@ __published:	// IDE-managed Components
 	void __fastcall SelectBackgroundColorChange(TObject *Sender);
 	void __fastcall FormResize(TObject *Sender);
 	void __fastcall SelectFillClick(TObject *Sender);
+	void __fastcall GradientBackgroundButtonClick(TObject *Sender);
+	void __fastcall SelectTextClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-	FileHandler globalFileHandler;
-	PaintState globalPaintState;
+//	FileHandler globalFileHandler;
+//	PaintState globalPaintState;
 	__fastcall TMainForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TMainForm *MainForm;
+
 //---------------------------------------------------------------------------
 #endif

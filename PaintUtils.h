@@ -14,7 +14,8 @@ enum class PaintMode {
 	LINE,
 	RECTANGLE,
 	BRUSH,
-  FILL
+	FILL,
+  TEXT
 };
 
 class PaintState {
@@ -22,6 +23,9 @@ class PaintState {
 		TColor paintColor = clBlack;
 		TColor outlineColor = clBlack;
 		TColor backgroundColor = clWhite;
+
+		TFont* font;
+    String text;
 
 		int penThickness = 1;
     int penThicknessMultiplier = 3;
@@ -33,6 +37,9 @@ class PaintState {
 		int posX;
 		int posY;
 
+		TColor gradientStartColor = clWhite;
+    TColor gradientEndColor = clWhite;
+
 		PaintMode paintMode = PaintMode::ELLIPSE;
 
 		void onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImage);
@@ -43,7 +50,11 @@ class PaintState {
 		void setColors(TColor paintColorValue, TColor outlineColorValue);
 		void setThickness(int thicknessValue);
 
-    void setBackgroundColor(TColor backgroundColorValue, TImage* CanvasImage, TImage* MainImage);
+		void setBackgroundColor(TColor backgroundColorValue, TImage* CanvasImage, TImage* MainImage);
+		void setFont(TFont* fontValue);
+		void setText(String textValue);
 };
+
+extern PaintState globalPaintState;
 
 #endif

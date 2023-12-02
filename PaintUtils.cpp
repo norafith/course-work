@@ -4,10 +4,12 @@
 
 #include "PaintUtils.h"
 
+PaintState globalPaintState;
+
 void PaintState::draw(int X, int Y, TImage* Image) {
 	Image->Picture->Bitmap->Canvas->Brush->Color = paintColor;
 	Image->Picture->Bitmap->Canvas->Pen->Color = outlineColor;
-  Image->Picture->Bitmap->Canvas->Pen->Width = penThickness;
+	Image->Picture->Bitmap->Canvas->Pen->Width = penThickness;
 	int thicknessAdditive = penThickness * penThicknessMultiplier;
 
 	switch (paintMode) {
@@ -45,10 +47,21 @@ void PaintState::draw(int X, int Y, TImage* Image) {
 			);
 			break;
 
-		case PaintMode::FILL:
-      TColor colorToFill = Image->Picture->Bitmap->Canvas->Pixels[X][Y];
-			Image->Picture->Bitmap->Canvas->FloodFill(X, Y, colorToFill, fsSurface);
-		break;
+		case PaintMode::TEXT:
+			// TODO
+ 			Image->Picture->Bitmap->Canvas->Font = font;
+			TRect tmpRect = TRect(posX, posY, X, Y);
+      Image->Picture->Bitmap->Canvas->Font = font;
+//      Image->Picture->Bitmap->Canvas->Font->Color = outlineColor;
+			Image->Picture->Bitmap->Canvas->TextRect(tmpRect, posX, posY, text);
+
+			break;
+
+//		case PaintMode::FILL:
+//      TColor colorToFill = Image->Picture->Bitmap->Canvas->Pixels[X][Y];
+//			Image->Picture->Bitmap->Canvas->FloodFill(X, Y, colorToFill, fsSurface);
+//			break;
+
 	}
 }
 
@@ -74,11 +87,12 @@ void PaintState::onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImag
 	if (paintMode == PaintMode::BRUSH || paintMode == PaintMode::ERASER) {
 		draw(X, Y, MainImage);
 	}
-//	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
-//	CanvasImage->Picture->Bitmap->Canvas->Rectangle(0, 0, CanvasImage->Width, CanvasImage->Height);
-//	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
-	TRect tmpRect = Rect(Point(posX, posY), Point(X, Y));
-	CanvasImage->Picture->Bitmap->Canvas->CopyRect(tmpRect, MainImage->Picture->Bitmap->Canvas, tmpRect);
+//
+//	TRect tmpRect = Rect(Point(posX, posY), Point(X, Y));
+//	CanvasImage->Picture->Bitmap->Canvas->CopyRect(tmpRect, CanvasImage->Picture->Bitmap->Canvas, tmpRect);
+//	draw(X, Y, CanvasImage);
+
+	CanvasImage->Picture->Bitmap->Assign(MainImage->Picture->Bitmap);
 	draw(X, Y, CanvasImage);
 
 }
@@ -94,11 +108,14 @@ void PaintState::onMouseUp(int X, int Y, TImage* CanvasImage, TImage* MainImage)
 //	CanvasImage->Picture->Bitmap->Canvas->Rectangle(0, 0, CanvasImage->Width, CanvasImage->Height);
 //	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
 //
-	draw(X, Y, MainImage);
-  TRect tmpRect = Rect(Point(posX, posY), Point(X, Y));
-	CanvasImage->Picture->Bitmap->Canvas->CopyRect(tmpRect, MainImage->Picture->Bitmap->Canvas, tmpRect);
+//	draw(X, Y, MainImage);
+//  TRect tmpRect = Rect(Point(posX, posY), Point(X, Y));
+//	CanvasImage->Picture->Bitmap->Canvas->CopyRect(tmpRect, MainImage->Picture->Bitmap->Canvas, tmpRect);
 
 //  draw(X, Y, MainImage);
+
+	draw(X, Y, MainImage);
+  CanvasImage->Picture->Bitmap->Assign(MainImage->Picture->Bitmap);
 	isDrawing = false;
 }
 
@@ -133,6 +150,14 @@ void PaintState::setBackgroundColor(TColor backgroundColorValue, TImage* CanvasI
 	MainImage->Picture->Bitmap->Canvas->Rectangle(0, 0, MainImage->Width, MainImage->Height);
 	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
 	CanvasImage->Picture->Bitmap->Canvas->Rectangle(0, 0, CanvasImage->Width, CanvasImage->Height);
+}
+
+void PaintState::setFont(TFont* fontValue) {
+  font = fontValue;
+};
+
+void PaintState::setText(String textValue) {
+  text = textValue;
 }
 
 #pragma package(smart_init)
