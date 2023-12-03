@@ -21,17 +21,22 @@ __published:	// IDE-managed Components
 	TPanel *GradientToolsPanel;
 	TLabel *Label1;
 	TLabel *Label2;
-	TLabel *Label3;
-	TSpeedButton *EndColorButton;
-	TSpinEdit *GradientAngleEdit;
 	TColorDialog *StartColorDialog;
 	TColorDialog *EndColorDialog;
-	TBitBtn *StartColorButton;
-	void __fastcall StartColorDialogClose(TObject *Sender);
+	TPanel *StartColorPanel;
+	TSpeedButton *StartColorButton;
+	TPanel *EndColorPanel;
+	TSpeedButton *EndColorButton;
+	TRadioGroup *RadioGroup1;
+	TRadioButton *SelectHorizontalRadio;
+	TRadioButton *SelectVerticalRadio;
 	void __fastcall StartColorDialogShow(TObject *Sender);
-	void __fastcall EndColorDialogClose(TObject *Sender);
 	void __fastcall EndColorDialogShow(TObject *Sender);
 	void __fastcall StartColorButtonClick(TObject *Sender);
+	void __fastcall EndColorButtonClick(TObject *Sender);
+	void __fastcall SelectHorizontalRadioClick(TObject *Sender);
+	void __fastcall SelectVerticalRadioClick(TObject *Sender);
+	void __fastcall FormResize(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TGradientForm(TComponent* Owner);

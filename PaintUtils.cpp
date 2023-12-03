@@ -103,16 +103,8 @@ void PaintState::onMouseUp(int X, int Y, TImage* CanvasImage, TImage* MainImage)
 		isDrawing = false;
 		return;
 	}
-//
-//	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
-//	CanvasImage->Picture->Bitmap->Canvas->Rectangle(0, 0, CanvasImage->Width, CanvasImage->Height);
-//	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
-//
-//	draw(X, Y, MainImage);
-//  TRect tmpRect = Rect(Point(posX, posY), Point(X, Y));
-//	CanvasImage->Picture->Bitmap->Canvas->CopyRect(tmpRect, MainImage->Picture->Bitmap->Canvas, tmpRect);
 
-//  draw(X, Y, MainImage);
+
 
 	draw(X, Y, MainImage);
   CanvasImage->Picture->Bitmap->Assign(MainImage->Picture->Bitmap);
@@ -127,12 +119,14 @@ void PaintState::onFormResize(TImage* CanvasImage, TImage* MainImage, TForm* Mai
 	MainImage->Picture->Bitmap->Height = MainForm->ClientHeight;
 	MainImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
 
+	MainImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
 	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
 	CanvasImage->Width = MainForm->Width - ToolPanel->Width - 5;
 	CanvasImage->Picture->Bitmap->Width = MainForm->ClientWidth - ToolPanel->Width - 5;
 	CanvasImage->Height = MainForm->Height;
 	CanvasImage->Picture->Bitmap->Height = MainForm->ClientHeight;
 	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
+	MainImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
  }
 
 void PaintState::setColors(TColor paintColorValue, TColor outlineColorValue) {
@@ -145,6 +139,7 @@ void PaintState::setThickness(int thicknessValue) {
 }
 
 void PaintState::setBackgroundColor(TColor backgroundColorValue, TImage* CanvasImage, TImage* MainImage) {
+  backgroundMode = BackgroundMode::COLOR;
 	backgroundColor = backgroundColorValue;
 	MainImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
 	MainImage->Picture->Bitmap->Canvas->Rectangle(0, 0, MainImage->Width, MainImage->Height);
@@ -158,6 +153,18 @@ void PaintState::setFont(TFont* fontValue) {
 
 void PaintState::setText(String textValue) {
   text = textValue;
+}
+
+void PaintState::fillGradient(TImage* Image) {
+	GradientFillCanvas(
+		Image->Picture->Bitmap->Canvas,
+		gradientStartColor,
+		gradientEndColor,
+		TRect(TPoint(0, 0), Image->Width, Image->Height),
+    gradientDirection
+	);
+
+  Image->Picture->Bitmap->Assign(Image->Picture->Bitmap);
 }
 
 #pragma package(smart_init)

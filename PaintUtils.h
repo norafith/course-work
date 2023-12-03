@@ -7,6 +7,7 @@
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.Forms.hpp>
 #include <Vcl.ExtCtrls.hpp>
+#include <Vcl.GraphUtil.hpp>
 
 enum class PaintMode {
 	ELLIPSE,
@@ -16,6 +17,11 @@ enum class PaintMode {
 	BRUSH,
 	FILL,
   TEXT
+};
+
+enum class BackgroundMode {
+	COLOR,
+  GRADIENT
 };
 
 class PaintState {
@@ -38,9 +44,11 @@ class PaintState {
 		int posY;
 
 		TColor gradientStartColor = clWhite;
-    TColor gradientEndColor = clWhite;
+		TColor gradientEndColor = clWhite;
+    TGradientDirection gradientDirection = gdHorizontal;
 
 		PaintMode paintMode = PaintMode::ELLIPSE;
+    BackgroundMode backgroundMode = BackgroundMode::COLOR;
 
 		void onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImage);
 		void onMouseDown(int X, int Y, TImage* CanvasImage, TImage* MainImage);
@@ -53,6 +61,8 @@ class PaintState {
 		void setBackgroundColor(TColor backgroundColorValue, TImage* CanvasImage, TImage* MainImage);
 		void setFont(TFont* fontValue);
 		void setText(String textValue);
+
+    void PaintState::fillGradient(TImage* Image);
 };
 
 extern PaintState globalPaintState;

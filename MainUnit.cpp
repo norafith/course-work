@@ -129,14 +129,16 @@ void __fastcall TMainForm::SelectFillClick(TObject *Sender)
 
 void __fastcall TMainForm::GradientBackgroundButtonClick(TObject *Sender)
 {
-  GradientForm->Show();
+	GradientForm->Show();
+	globalPaintState.fillGradient(MainImage);
+	globalPaintState.fillGradient(CanvasImage);
 }
 //---------------------------------------------------------------------------
 
 
 void __fastcall TMainForm::SelectTextClick(TObject *Sender)
 {
-  DrawTextForm->Show();
+	DrawTextForm->Show();
 }
 
 
