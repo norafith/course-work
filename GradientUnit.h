@@ -13,6 +13,7 @@
 #include <Vcl.Dialogs.hpp>
 
 #include "PaintUtils.h"
+#include "MainUnit.h"
 //---------------------------------------------------------------------------
 class TGradientForm : public TForm
 {
@@ -37,6 +38,7 @@ __published:	// IDE-managed Components
 	void __fastcall SelectHorizontalRadioClick(TObject *Sender);
 	void __fastcall SelectVerticalRadioClick(TObject *Sender);
 	void __fastcall FormResize(TObject *Sender);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TGradientForm(TComponent* Owner);

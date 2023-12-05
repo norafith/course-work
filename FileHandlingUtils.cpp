@@ -66,7 +66,6 @@ void FileHandler::saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* Ma
 void FileHandler::loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage, TImage* CanvasImage) {
 	if (!OpenMainImageDialog->Execute()) return;
 
-
 	TWICImage* tmpImage = new TWICImage;
 	tmpImage->LoadFromFile(OpenMainImageDialog->FileName);
 

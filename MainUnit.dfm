@@ -2,8 +2,8 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = #1043#1088#1072#1092#1080#1095#1077#1089#1082#1080#1081' '#1088#1077#1076#1072#1082#1090#1086#1088
-  ClientHeight = 503
-  ClientWidth = 564
+  ClientHeight = 509
+  ClientWidth = 609
   Color = clBtnFace
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -2195,14 +2195,15 @@ object MainForm: TMainForm
     TabOrder = 0
   end
   object ToolPanel: TPanel
-    Left = 451
+    Left = 496
     Top = 0
     Width = 113
-    Height = 503
+    Height = 509
     Align = alRight
     BevelInner = bvSpace
     TabOrder = 1
-    ExplicitLeft = 458
+    ExplicitLeft = 445
+    ExplicitHeight = 502
     object Label2: TLabel
       Left = 6
       Top = 372

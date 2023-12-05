@@ -10,6 +10,7 @@ object GradientForm: TGradientForm
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnClose = FormClose
   OnResize = FormResize
   DesignSize = (
     323
@@ -18,20 +19,22 @@ object GradientForm: TGradientForm
   object GradientPreviewImage: TImage
     Left = 8
     Top = 24
-    Width = 307
+    Width = 301
     Height = 153
     Anchors = [akLeft, akTop, akRight]
+    ExplicitWidth = 307
   end
   object GradientToolsPanel: TPanel
     Left = 8
     Top = 192
-    Width = 307
+    Width = 301
     Height = 162
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
-    ExplicitHeight = 224
+    ExplicitWidth = 295
+    ExplicitHeight = 153
     DesignSize = (
-      307
+      301
       162)
     object Label1: TLabel
       Left = 16
@@ -62,18 +65,18 @@ object GradientForm: TGradientForm
     object StartColorPanel: TPanel
       Left = 169
       Top = 6
-      Width = 120
+      Width = 114
       Height = 22
       Anchors = [akLeft, akRight]
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
-      ExplicitTop = 9
-      ExplicitWidth = 90
+      ExplicitTop = 5
+      ExplicitWidth = 108
       object StartColorButton: TSpeedButton
         Left = 1
         Top = 1
-        Width = 118
+        Width = 112
         Height = 20
         Align = alClient
         DisabledImageName = 'StartColorButton'
@@ -86,17 +89,17 @@ object GradientForm: TGradientForm
     object EndColorPanel: TPanel
       Left = 170
       Top = 38
-      Width = 119
+      Width = 113
       Height = 20
       Anchors = [akLeft, akTop, akRight]
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
-      ExplicitWidth = 89
+      ExplicitWidth = 107
       object EndColorButton: TSpeedButton
         Left = 1
         Top = 1
-        Width = 117
+        Width = 111
         Height = 18
         Align = alClient
         Flat = True
@@ -110,10 +113,11 @@ object GradientForm: TGradientForm
     object RadioGroup1: TRadioGroup
       Left = 10
       Top = 66
-      Width = 290
+      Width = 284
       Height = 87
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 2
+      ExplicitWidth = 278
     end
     object SelectHorizontalRadio: TRadioButton
       Left = 16
