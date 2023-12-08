@@ -28,19 +28,19 @@ void __fastcall TMainForm::SelectCircleClick(TObject *Sender)
 	globalPaintState.paintMode = PaintMode::ELLIPSE;
 }
 
-void __fastcall TMainForm::SaveMainImageDialogTypeChange(TObject *Sender)
+void __fastcall TMainForm::SaveImageDialogTypeChange(TObject *Sender)
 {
-	globalFileHandler.setSelectedExtension(SaveMainImageDialog);
+	globalFileHandler.setSelectedExtension(SaveImageDialog);
 }
 
 void __fastcall TMainForm::SaveAsMenuItemClick(TObject *Sender)
 {
-	globalFileHandler.saveCanvas(SaveMainImageDialog, MainImage);
+	globalFileHandler.saveCanvas(SaveImageDialog, MainImage);
 }
 
-void __fastcall TMainForm::LoadFileMenuItemClick(TObject *Sender)
+void __fastcall TMainForm::OpenFileMenuItemClick(TObject *Sender)
 {
-	globalFileHandler.loadImage(SaveMainImageDialog, MainImage, CanvasImage);
+	globalFileHandler.loadImage(SaveImageDialog, MainImage, CanvasImage);
 
 }
 
@@ -140,5 +140,12 @@ void __fastcall TMainForm::SelectTextClick(TObject *Sender)
 }
 
 
+//---------------------------------------------------------------------------
+
+
+void __fastcall TMainForm::ShouldResizeImageMenuItemClick(TObject *Sender)
+{
+	ShouldResizeImageMenuItem->Checked = !ShouldResizeImageMenuItem->Checked;
+}
 //---------------------------------------------------------------------------
 

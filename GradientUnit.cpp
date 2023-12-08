@@ -38,7 +38,7 @@ void __fastcall TGradientForm::StartColorButtonClick(TObject *Sender)
 	globalPaintState.gradientStartColor = StartColorDialog->Color;
 	StartColorPanel->Color = StartColorDialog->Color;
 	globalPaintState.fillGradient(GradientPreviewImage);
-	globalPaintState.backgroundMode = BackgroundMode::GRADIENT;
+//	globalPaintState.backgroundMode = BackgroundMode::GRADIENT;
 }
 //---------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ void __fastcall TGradientForm::EndColorButtonClick(TObject *Sender)
 	globalPaintState.gradientEndColor = EndColorDialog->Color;
 	EndColorPanel->Color = EndColorDialog->Color;
 	globalPaintState.fillGradient(GradientPreviewImage);
-	globalPaintState.backgroundMode = BackgroundMode::GRADIENT;
+//	globalPaintState.backgroundMode = BackgroundMode::GRADIENT;
 }
 //---------------------------------------------------------------------------
 
@@ -68,8 +68,8 @@ void __fastcall TGradientForm::SelectVerticalRadioClick(TObject *Sender)
 
 void __fastcall TGradientForm::FormResize(TObject *Sender)
 {
-	GradientPreviewImage->Width = GradientForm->ClientWidth - 16;
-	GradientPreviewImage->Left = 8;
+	GradientPreviewImage->Width = GradientForm->ClientWidth - 20;
+	GradientPreviewImage->Left = 10;
   GradientPreviewImage->Picture->Bitmap->Width = GradientPreviewImage->Width;
   globalPaintState.fillGradient(GradientPreviewImage);
 }

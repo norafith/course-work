@@ -139,7 +139,7 @@ void PaintState::setThickness(int thicknessValue) {
 }
 
 void PaintState::setBackgroundColor(TColor backgroundColorValue, TImage* CanvasImage, TImage* MainImage) {
-  backgroundMode = BackgroundMode::COLOR;
+//  backgroundMode = BackgroundMode::COLOR;
 	backgroundColor = backgroundColorValue;
 	MainImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
 	MainImage->Picture->Bitmap->Canvas->Rectangle(0, 0, MainImage->Width, MainImage->Height);

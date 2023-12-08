@@ -19,10 +19,10 @@ enum class PaintMode {
   TEXT
 };
 
-enum class BackgroundMode {
-	COLOR,
-  GRADIENT
-};
+//enum class BackgroundMode {
+//	COLOR,
+//  GRADIENT
+//};
 
 class PaintState {
 	private:
@@ -48,7 +48,7 @@ class PaintState {
     TGradientDirection gradientDirection = gdHorizontal;
 
 		PaintMode paintMode = PaintMode::ELLIPSE;
-    BackgroundMode backgroundMode = BackgroundMode::COLOR;
+//    BackgroundMode backgroundMode = BackgroundMode::COLOR;
 
 		void onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImage);
 		void onMouseDown(int X, int Y, TImage* CanvasImage, TImage* MainImage);
@@ -62,7 +62,7 @@ class PaintState {
 		void setFont(TFont* fontValue);
 		void setText(String textValue);
 
-    void PaintState::fillGradient(TImage* Image);
+    void fillGradient(TImage* Image);
 };
 
 extern PaintState globalPaintState;

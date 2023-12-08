@@ -2187,13 +2187,6 @@ object MainForm: TMainForm
     OnMouseMove = CanvasImageMouseMove
     OnMouseUp = CanvasImageMouseUp
   end
-  object TrackBar2: TTrackBar
-    Left = 560
-    Top = 56
-    Width = 41
-    Height = 1
-    TabOrder = 0
-  end
   object ToolPanel: TPanel
     Left = 496
     Top = 0
@@ -2201,10 +2194,10 @@ object MainForm: TMainForm
     Height = 509
     Align = alRight
     BevelInner = bvSpace
-    TabOrder = 1
-    ExplicitLeft = 445
-    ExplicitHeight = 502
-    object Label2: TLabel
+    TabOrder = 0
+    ExplicitLeft = 490
+    ExplicitHeight = 500
+    object ColorGridLabel: TLabel
       Left = 6
       Top = 372
       Width = 70
@@ -2217,7 +2210,7 @@ object MainForm: TMainForm
       Font.Style = []
       ParentFont = False
     end
-    object Label3: TLabel
+    object BackgroundColorLabel: TLabel
       Left = 6
       Top = 280
       Width = 88
@@ -2230,7 +2223,7 @@ object MainForm: TMainForm
       Font.Style = []
       ParentFont = False
     end
-    object Label1: TLabel
+    object ThicknessLabel: TLabel
       Left = 6
       Top = 217
       Width = 75
@@ -3262,28 +3255,38 @@ object MainForm: TMainForm
   object MainMenu: TMainMenu
     Left = 464
     Top = 368
-    object N1: TMenuItem
+    object FileMenu: TMenuItem
       Caption = #1060#1072#1081#1083
       object SaveAsMenuItem: TMenuItem
         Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1082#1072#1082'...'
         OnClick = SaveAsMenuItemClick
       end
-      object LoadFileMenuItem: TMenuItem
-        Caption = #1047#1072#1075#1088#1091#1079#1080#1090#1100'...'
-        OnClick = LoadFileMenuItemClick
+      object OpenFileMenuItem: TMenuItem
+        Caption = #1054#1090#1082#1088#1099#1090#1100'...'
+        ImageName = 'OpenFileMenuItem'
+        OnClick = OpenFileMenuItemClick
+      end
+      object ShouldResizeImageMenuItem: TMenuItem
+        Caption = #1055#1086#1076#1075#1086#1085#1103#1090#1100' '#1088#1072#1079#1084#1077#1088#1099' '#1080#1079#1086#1073#1088#1072#1078#1077#1085#1080#1103' '#1087#1086#1076' '#1088#1072#1079#1084#1077#1088#1099' '#1093#1086#1083#1089#1090#1072
+        Checked = True
+      end
+    end
+    object CanvasMenu: TMenuItem
+      Caption = #1061#1086#1083#1089#1090
+      object SetCanvasSizeMenuItem: TMenuItem
+        Caption = #1047#1072#1076#1072#1090#1100' '#1088#1072#1079#1084#1077#1088#1099' '#1093#1086#1083#1089#1090#1072'...'
       end
     end
   end
-  object SaveMainImageDialog: TSavePictureDialog
+  object SaveImageDialog: TSavePictureDialog
     Filter = 
       'Portable Network Graphics (*.png)|*.png|JPEG Image File (*.jpg)|' +
       '*.jpg|JPEG Image File (*.jpeg)|*.jpeg|GIF Image (*.gif)|*.gif|Bi' +
       'tmaps (*.bmp)|*.bmp|Custom'
-    OnTypeChange = SaveMainImageDialogTypeChange
     Left = 376
     Top = 352
   end
-  object OpenMainImageDialog: TOpenPictureDialog
+  object OpenImageDialog: TOpenPictureDialog
     Filter = 
       'All images|*.gif;*.jpg;*.jpeg;*.png;*.bmp|GIF Image (*.gif)|*.gi' +
       'f|JPEG Image File (*.jpg)|*.jpg|JPEG Image File (*.jpeg)|*.jpeg|' +
