@@ -146,6 +146,15 @@ void __fastcall TMainForm::SelectTextClick(TObject *Sender)
 void __fastcall TMainForm::ShouldResizeImageMenuItemClick(TObject *Sender)
 {
 	ShouldResizeImageMenuItem->Checked = !ShouldResizeImageMenuItem->Checked;
+  globalFileHandler.setShouldResizeImage(ShouldResizeImageMenuItem->Checked);
+}
+//---------------------------------------------------------------------------
+
+
+
+void __fastcall TMainForm::SetCanvasSizeMenuItemClick(TObject *Sender)
+{
+  CanvasSizeForm->Show();
 }
 //---------------------------------------------------------------------------
 

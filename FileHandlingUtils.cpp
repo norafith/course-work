@@ -8,6 +8,7 @@
 #include <GIFimg.hpp>
 #include <System.IOUtils.hpp>
 #include <Vcl.GraphUtil.hpp>
+#include "MainUnit.h"
 
 FileHandler globalFileHandler;
 
@@ -66,32 +67,38 @@ void FileHandler::saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* Ma
 void FileHandler::loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage, TImage* CanvasImage) {
 	if (!OpenMainImageDialog->Execute()) return;
 
-	TWICImage* tmpImage = new TWICImage;
-	tmpImage->LoadFromFile(OpenMainImageDialog->FileName);
+	if (shouldResizeImage) {
+		TWICImage* tmpImage = new TWICImage;
+		tmpImage->LoadFromFile(OpenMainImageDialog->FileName);
 
-	tmpImage = tmpImage->CreateScaledCopy(MainImage->Width, MainImage->Height);
+		tmpImage = tmpImage->CreateScaledCopy(MainImage->Width, MainImage->Height);
 
-//	TBitmap* tmpBitmap = new TBitmap;
-//	tmpBitmap->Assign(tmpScalingImage);
+		MainImage->Picture->Graphic->Assign(tmpImage);
+		CanvasImage->Picture->Graphic->Assign(tmpImage);
 
-	MainImage->Picture->Graphic->Assign(tmpImage);
-	CanvasImage->Picture->Graphic->Assign(tmpImage);
+		MainImage->Picture->Bitmap->AlphaFormat = afIgnored;
+		CanvasImage->Picture->Bitmap->AlphaFormat = afIgnored;
 
-	MainImage->Picture->Bitmap->AlphaFormat = afIgnored;
-	CanvasImage->Picture->Bitmap->AlphaFormat = afIgnored;
+		tmpImage->Free();
+	} else {
+		MainImage->Picture->LoadFromFile(OpenMainImageDialog->FileName);
 
-//	tmpBitmap->Free();
-	tmpImage->Free();
-//
-//	MainImage->Picture->LoadFromFile(OpenMainImageDialog->FileName);
-//
-//	TBitmap* tmpBitmap = new TBitmap;
-//
-//	tmpBitmap->Assign(MainImage->Picture->Graphic);
-//  MainImage->Picture->Bitmap->Assign(tmpBitmap);
-//	CanvasImage->Picture->Bitmap->Assign(tmpBitmap);
-//
-//  tmpBitmap->Free();
+
+		TBitmap* tmpBitmap = new TBitmap;
+		tmpBitmap->Assign(MainImage->Picture->Graphic);
+
+		MainForm->ClientWidth = tmpBitmap->Width + MainForm->ToolPanel->Width + 5;
+    MainForm->ClientHeight = tmpBitmap->Height;
+
+		MainImage->Picture->Bitmap->Assign(tmpBitmap);
+		CanvasImage->Picture->Bitmap->Assign(tmpBitmap);
+
+		tmpBitmap->Free();
+	}
+}
+
+void FileHandler::setShouldResizeImage(bool value) {
+  shouldResizeImage = value;
 }
 
 //---------------------------------------------------------------------------

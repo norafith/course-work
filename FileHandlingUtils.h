@@ -19,12 +19,13 @@ class FileHandler {
 		};
 
 		String selectedExtension;
+		bool shouldResizeImage = true;
 
 	public:
 		void setSelectedExtension(TSavePictureDialog* SaveMainImageDialog);
+    void setShouldResizeImage(bool value);
 
 		void saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* MainImage);
-
 		void loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage, TImage* CanvasImage);
 };
 

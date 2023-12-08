@@ -127,6 +127,12 @@
         <LinkPackageImports>rtl.bpi;vcl.bpi;vclimg.bpi;bcbsmp.bpi;vclx.bpi;vclactnband.bpi</LinkPackageImports>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="CanvasSizeUnit.cpp">
+            <Form>CanvasSizeForm</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>CanvasSizeUnit.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
+        </CppCompile>
         <CppCompile Include="DrawTextUnit.cpp">
             <Form>DrawTextForm</Form>
             <FormType>dfm</FormType>
@@ -163,6 +169,7 @@
         <FormResources Include="MainUnit.dfm"/>
         <FormResources Include="DrawTextUnit.dfm"/>
         <FormResources Include="GradientUnit.dfm"/>
+        <FormResources Include="CanvasSizeUnit.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

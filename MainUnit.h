@@ -23,6 +23,7 @@
 #include "PaintUtils.h"
 #include "GradientUnit.h"
 #include "DrawTextUnit.h"
+#include "CanvasSizeUnit.h"
 
 //---------------------------------------------------------------------------
 class TMainForm : public TForm
@@ -76,6 +77,7 @@ __published:	// IDE-managed Components
 	void __fastcall GradientBackgroundButtonClick(TObject *Sender);
 	void __fastcall SelectTextClick(TObject *Sender);
 	void __fastcall ShouldResizeImageMenuItemClick(TObject *Sender);
+	void __fastcall SetCanvasSizeMenuItemClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 //	FileHandler globalFileHandler;
