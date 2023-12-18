@@ -75,7 +75,8 @@ void __fastcall TGradientForm::FormResize(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TGradientForm::FormClose(TObject *Sender, TCloseAction &Action)
+
+void __fastcall TGradientForm::ApplyGradientButtonClick(TObject *Sender)
 {
 	globalPaintState.fillGradient(MainForm->MainImage);
 	globalPaintState.fillGradient(MainForm->CanvasImage);

@@ -2,8 +2,8 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = #1043#1088#1072#1092#1080#1095#1077#1089#1082#1080#1081' '#1088#1077#1076#1072#1082#1090#1086#1088
-  ClientHeight = 510
-  ClientWidth = 609
+  ClientHeight = 501
+  ClientWidth = 603
   Color = clBtnFace
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -2188,15 +2188,13 @@ object MainForm: TMainForm
     OnMouseUp = CanvasImageMouseUp
   end
   object ToolPanel: TPanel
-    Left = 496
+    Left = 490
     Top = 0
     Width = 113
-    Height = 510
+    Height = 501
     Align = alRight
     BevelInner = bvSpace
     TabOrder = 0
-    ExplicitLeft = 490
-    ExplicitHeight = 501
     object ColorGridLabel: TLabel
       Left = 6
       Top = 372
