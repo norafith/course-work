@@ -129,10 +129,10 @@ void PaintState::onFormResize(TImage* CanvasImage, TImage* MainImage, TForm* Mai
 	MainImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
  }
 
-void PaintState::setColors(TColor paintColorValue, TColor outlineColorValue) {
-	paintColor = paintColorValue;
-	outlineColor = outlineColorValue;
-}
+//void PaintState::setColors(TColor paintColorValue, TColor outlineColorValue) {
+//	paintColor = paintColorValue;
+//	outlineColor = outlineColorValue;
+//}
 
 void PaintState::setThickness(int thicknessValue) {
 	penThickness = thicknessValue;
@@ -165,6 +165,10 @@ void PaintState::fillGradient(TImage* Image) {
 	);
 
   Image->Picture->Bitmap->Assign(Image->Picture->Bitmap);
+}
+
+TColor PaintState::getBackgroundColor() {
+  return backgroundColor;
 }
 
 #pragma package(smart_init)

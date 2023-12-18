@@ -92,11 +92,11 @@ void __fastcall TMainForm::CanvasImageMouseUp(TObject *Sender, TMouseButton Butt
 }
 //---------------------------------------------------------------------------
 
-
-void __fastcall TMainForm::ColorGridChange(TObject *Sender)
-{
-	globalPaintState.setColors(ColorGrid->ForegroundColor, ColorGrid->BackgroundColor);
-}
+//
+//void __fastcall TMainForm::ColorGridChange(TObject *Sender)
+//{
+//	globalPaintState.setColors(ColorGrid->ForegroundColor, ColorGrid->BackgroundColor);
+//}
 //---------------------------------------------------------------------------
 
 
@@ -106,11 +106,11 @@ void __fastcall TMainForm::SetThicknessBarChange(TObject *Sender)
   globalPaintState.setThickness(SetThicknessBar->Position);
 }
 //---------------------------------------------------------------------------
-
-void __fastcall TMainForm::SelectBackgroundColorChange(TObject *Sender)
-{
-	globalPaintState.setBackgroundColor(SelectBackgroundColor->Selected, CanvasImage, MainImage);
-}
+//
+//void __fastcall TMainForm::SelectBackgroundColorChange(TObject *Sender)
+//{
+//	globalPaintState.setBackgroundColor(SelectBackgroundColor->Selected, CanvasImage, MainImage);
+//}
 //---------------------------------------------------------------------------
 
 void __fastcall TMainForm::FormResize(TObject *Sender)
@@ -155,6 +155,51 @@ void __fastcall TMainForm::ShouldResizeImageMenuItemClick(TObject *Sender)
 void __fastcall TMainForm::SetCanvasSizeMenuItemClick(TObject *Sender)
 {
   CanvasSizeForm->Show();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::OutlineColorDialogShow(TObject *Sender)
+{
+	OutlineColorDialog->Color = globalPaintState.outlineColor;
+	OutlineColorPanel->Color = globalPaintState.outlineColor;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::PaintColorDialogShow(TObject *Sender)
+{
+	PaintColorDialog->Color = globalPaintState.paintColor;
+	PaintColorPanel->Color = globalPaintState.paintColor;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::PaintColorButtonClick(TObject *Sender)
+{
+	if (!PaintColorDialog->Execute()) return;
+	globalPaintState.paintColor = PaintColorDialog->Color;
+	PaintColorPanel->Color = PaintColorDialog->Color;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::OutlineColorButtonClick(TObject *Sender)
+{
+	if (!OutlineColorDialog->Execute()) return;
+	globalPaintState.outlineColor = OutlineColorDialog->Color;
+	OutlineColorPanel->Color = OutlineColorDialog->Color;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::BackgroundColorDialogShow(TObject *Sender)
+{
+	BackgroundColorDialog->Color = globalPaintState.getBackgroundColor();
+	BackgroundColorPanel->Color = globalPaintState.getBackgroundColor();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TMainForm::BackgroundColorButtonClick(TObject *Sender)
+{
+	if (!BackgroundColorDialog->Execute()) return;
+	globalPaintState.setBackgroundColor(BackgroundColorDialog->Color, CanvasImage, MainImage);
+	BackgroundColorPanel->Color = globalPaintState.getBackgroundColor();
 }
 //---------------------------------------------------------------------------
 

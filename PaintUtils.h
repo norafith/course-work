@@ -26,26 +26,27 @@ enum class PaintMode {
 
 class PaintState {
 	private:
-		TColor paintColor = clBlack;
-		TColor outlineColor = clBlack;
-		TColor backgroundColor = clWhite;
-
 		TFont* font;
-    String text;
+		String text;
+
+    TColor backgroundColor = clWhite;
 
 		int penThickness = 1;
-    int penThicknessMultiplier = 3;
+		int penThicknessMultiplier = 3;
 
 		void draw(int X, int Y, TImage* Image);
 
 	public:
+		TColor paintColor = clBlack;
+		TColor outlineColor = clBlack;
+
 		bool isDrawing;
 		int posX;
 		int posY;
 
 		TColor gradientStartColor = clWhite;
 		TColor gradientEndColor = clWhite;
-    TGradientDirection gradientDirection = gdHorizontal;
+		TGradientDirection gradientDirection = gdHorizontal;
 
 		PaintMode paintMode = PaintMode::ELLIPSE;
 //    BackgroundMode backgroundMode = BackgroundMode::COLOR;
@@ -53,16 +54,17 @@ class PaintState {
 		void onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImage);
 		void onMouseDown(int X, int Y, TImage* CanvasImage, TImage* MainImage);
 		void onMouseUp(int X, int Y, TImage* CanvasImage, TImage* MainImage);
-    void onFormResize(TImage* CanvasImage, TImage* MainImage, TForm* MainForm, TPanel* ToolPanel);
+		void onFormResize(TImage* CanvasImage, TImage* MainImage, TForm* MainForm, TPanel* ToolPanel);
 
-		void setColors(TColor paintColorValue, TColor outlineColorValue);
 		void setThickness(int thicknessValue);
 
 		void setBackgroundColor(TColor backgroundColorValue, TImage* CanvasImage, TImage* MainImage);
+    TColor getBackgroundColor();
+
 		void setFont(TFont* fontValue);
 		void setText(String textValue);
 
-    void fillGradient(TImage* Image);
+		void fillGradient(TImage* Image);
 };
 
 extern PaintState globalPaintState;

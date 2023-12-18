@@ -2,7 +2,7 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = #1043#1088#1072#1092#1080#1095#1077#1089#1082#1080#1081' '#1088#1077#1076#1072#1082#1090#1086#1088
-  ClientHeight = 501
+  ClientHeight = 509
   ClientWidth = 603
   Color = clBtnFace
   DoubleBuffered = True
@@ -2191,45 +2191,34 @@ object MainForm: TMainForm
     Left = 490
     Top = 0
     Width = 113
-    Height = 501
+    Height = 509
     Align = alRight
     BevelInner = bvSpace
     TabOrder = 0
-    object ColorGridLabel: TLabel
-      Left = 6
-      Top = 372
-      Width = 70
-      Height = 23
-      Caption = #1055#1072#1083#1080#1090#1088#1072':'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -17
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      ParentFont = False
-    end
+    ExplicitLeft = 484
+    ExplicitHeight = 501
     object BackgroundColorLabel: TLabel
       Left = 6
-      Top = 280
-      Width = 88
-      Height = 23
+      Top = 412
+      Width = 76
+      Height = 20
       Caption = #1062#1074#1077#1090' '#1092#1086#1085#1072':'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -17
+      Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
     end
     object ThicknessLabel: TLabel
       Left = 6
-      Top = 217
-      Width = 75
-      Height = 23
+      Top = 220
+      Width = 66
+      Height = 20
       Caption = #1058#1086#1083#1097#1080#1085#1072':'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -17
+      Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
@@ -3206,28 +3195,35 @@ object MainForm: TMainForm
         000000000000}
       OnClick = SelectTextClick
     end
-    object ColorGrid: TColorGrid
+    object PaintColorLabel: TLabel
       Left = 6
-      Top = 401
+      Top = 288
       Width = 96
-      Height = 100
-      ClickEnablesColor = True
-      TabOrder = 0
-      OnChange = ColorGridChange
+      Height = 20
+      Caption = #1062#1074#1077#1090' '#1079#1072#1083#1080#1074#1082#1080':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
     end
-    object SelectBackgroundColor: TColorBox
-      Left = 6
-      Top = 309
+    object OutlineColorLabel: TLabel
+      Left = 8
+      Top = 351
       Width = 99
-      Height = 22
-      DefaultColorColor = clDefault
-      Style = [cbStandardColors]
-      TabOrder = 1
-      OnChange = SelectBackgroundColorChange
+      Height = 20
+      Caption = #1062#1074#1077#1090' '#1086#1073#1074#1086#1076#1082#1080':'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
     end
     object SetThicknessBar: TTrackBar
       Left = 0
-      Top = 240
+      Top = 246
       Width = 115
       Height = 50
       Ctl3D = True
@@ -3236,18 +3232,81 @@ object MainForm: TMainForm
       ParentShowHint = False
       Position = 1
       ShowHint = False
-      TabOrder = 2
+      TabOrder = 0
       TickMarks = tmTopLeft
       OnChange = SetThicknessBarChange
     end
     object GradientBackgroundButton: TButton
       Left = 6
-      Top = 337
+      Top = 475
       Width = 99
       Height = 29
       Caption = #1043#1088#1072#1076#1080#1077#1085#1090
-      TabOrder = 3
+      TabOrder = 1
       OnClick = GradientBackgroundButtonClick
+    end
+    object PaintColorPanel: TPanel
+      Left = 6
+      Top = 314
+      Width = 100
+      Height = 30
+      Color = clBlack
+      ParentBackground = False
+      TabOrder = 2
+      object PaintColorButton: TSpeedButton
+        Left = 1
+        Top = 1
+        Width = 98
+        Height = 28
+        Align = alClient
+        Flat = True
+        OnClick = PaintColorButtonClick
+        ExplicitLeft = 48
+        ExplicitTop = 8
+        ExplicitWidth = 23
+        ExplicitHeight = 22
+      end
+    end
+    object OutlineColorPanel: TPanel
+      Left = 8
+      Top = 377
+      Width = 97
+      Height = 30
+      Color = clBlack
+      ParentBackground = False
+      TabOrder = 3
+      object OutlineColorButton: TSpeedButton
+        Left = 1
+        Top = 1
+        Width = 95
+        Height = 28
+        Align = alClient
+        Flat = True
+        OnClick = OutlineColorButtonClick
+        ExplicitLeft = -15
+        ExplicitTop = 9
+        ExplicitWidth = 98
+        ExplicitHeight = 29
+      end
+    end
+    object BackgroundColorPanel: TPanel
+      Left = 6
+      Top = 438
+      Width = 100
+      Height = 30
+      Color = clWhite
+      ParentBackground = False
+      TabOrder = 4
+      object BackgroundColorButton: TSpeedButton
+        Left = 1
+        Top = 1
+        Width = 98
+        Height = 28
+        Align = alClient
+        Flat = True
+        OnClick = BackgroundColorButtonClick
+        ExplicitWidth = 100
+      end
     end
   end
   object MainMenu: TMainMenu
@@ -3293,5 +3352,20 @@ object MainForm: TMainForm
       'Portable Network Graphics (*.png)|*.png|Bitmaps (*.bmp)|*.bmp'
     Left = 408
     Top = 312
+  end
+  object PaintColorDialog: TColorDialog
+    OnShow = PaintColorDialogShow
+    Left = 344
+    Top = 296
+  end
+  object OutlineColorDialog: TColorDialog
+    OnShow = OutlineColorDialogShow
+    Left = 360
+    Top = 392
+  end
+  object BackgroundColorDialog: TColorDialog
+    OnShow = BackgroundColorDialogShow
+    Left = 384
+    Top = 208
   end
 end

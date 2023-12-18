@@ -39,10 +39,7 @@ __published:	// IDE-managed Components
 	TImage *CanvasImage;
 	TPanel *ToolPanel;
 	TLabel *BackgroundColorLabel;
-	TColorGrid *ColorGrid;
-	TLabel *ColorGridLabel;
 	TButton *GradientBackgroundButton;
-	TColorBox *SelectBackgroundColor;
 	TSpeedButton *SelectBrush;
 	TSpeedButton *SelectCircle;
 	TSpeedButton *SelectEraser;
@@ -55,6 +52,17 @@ __published:	// IDE-managed Components
 	TMenuItem *CanvasMenu;
 	TMenuItem *SetCanvasSizeMenuItem;
 	TMenuItem *ShouldResizeImageMenuItem;
+	TLabel *PaintColorLabel;
+	TPanel *PaintColorPanel;
+	TSpeedButton *PaintColorButton;
+	TLabel *OutlineColorLabel;
+	TPanel *OutlineColorPanel;
+	TSpeedButton *OutlineColorButton;
+	TPanel *BackgroundColorPanel;
+	TSpeedButton *BackgroundColorButton;
+	TColorDialog *PaintColorDialog;
+	TColorDialog *OutlineColorDialog;
+	TColorDialog *BackgroundColorDialog;
 	void __fastcall SelectCircleClick(TObject *Sender);
 	void __fastcall SaveAsMenuItemClick(TObject *Sender);
 	void __fastcall OpenFileMenuItemClick(TObject *Sender);
@@ -68,16 +76,20 @@ __published:	// IDE-managed Components
 	void __fastcall CanvasImageMouseMove(TObject *Sender, TShiftState Shift, int X,
           int Y);
 	void __fastcall CanvasImageMouseUp(TObject *Sender, TMouseButton Button, TShiftState Shift,
-          int X, int Y);
-	void __fastcall ColorGridChange(TObject *Sender);
+					int X, int Y);
 	void __fastcall SetThicknessBarChange(TObject *Sender);
-	void __fastcall SelectBackgroundColorChange(TObject *Sender);
 	void __fastcall FormResize(TObject *Sender);
 	void __fastcall SelectFillClick(TObject *Sender);
 	void __fastcall GradientBackgroundButtonClick(TObject *Sender);
 	void __fastcall SelectTextClick(TObject *Sender);
 	void __fastcall ShouldResizeImageMenuItemClick(TObject *Sender);
 	void __fastcall SetCanvasSizeMenuItemClick(TObject *Sender);
+	void __fastcall OutlineColorDialogShow(TObject *Sender);
+	void __fastcall PaintColorDialogShow(TObject *Sender);
+	void __fastcall PaintColorButtonClick(TObject *Sender);
+	void __fastcall OutlineColorButtonClick(TObject *Sender);
+	void __fastcall BackgroundColorDialogShow(TObject *Sender);
+	void __fastcall BackgroundColorButtonClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 //	FileHandler globalFileHandler;
