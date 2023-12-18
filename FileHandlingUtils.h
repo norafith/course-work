@@ -26,7 +26,7 @@ class FileHandler {
     void setShouldResizeImage(bool value);
 
 		void saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* MainImage);
-		void loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage, TImage* CanvasImage);
+		int loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage, TImage* CanvasImage);
 };
 
 extern FileHandler globalFileHandler;

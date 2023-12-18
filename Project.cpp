@@ -15,6 +15,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	{
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
+		Application->Title = "Графический редактор";
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TGradientForm), &GradientForm);
 		Application->CreateForm(__classid(TDrawTextForm), &DrawTextForm);

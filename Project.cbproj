@@ -167,9 +167,9 @@
             <PCH>true</PCH>
         </PCHCompile>
         <FormResources Include="MainUnit.dfm"/>
+        <FormResources Include="CanvasSizeUnit.dfm"/>
         <FormResources Include="DrawTextUnit.dfm"/>
         <FormResources Include="GradientUnit.dfm"/>
-        <FormResources Include="CanvasSizeUnit.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

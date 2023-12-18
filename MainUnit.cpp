@@ -40,8 +40,12 @@ void __fastcall TMainForm::SaveAsMenuItemClick(TObject *Sender)
 
 void __fastcall TMainForm::OpenFileMenuItemClick(TObject *Sender)
 {
-	globalFileHandler.loadImage(SaveImageDialog, MainImage, CanvasImage);
-
+	int resultCode = globalFileHandler.loadImage(SaveImageDialog, MainImage, CanvasImage);
+	if (resultCode != 0) {
+		String message = L"Ќевозможно открыть изображение по пути \""
+			+ String(SaveImageDialog->FileName) + L"\".";
+		ShowMessage(message);
+	}
 }
 
 void __fastcall TMainForm::SelectEraserClick(TObject *Sender)
