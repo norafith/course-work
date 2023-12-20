@@ -1,5 +1,3 @@
-//---------------------------------------------------------------------------
-
 #pragma hdrstop
 
 #include "PaintUtils.h"
@@ -12,57 +10,54 @@ void PaintState::draw(int X, int Y, TImage* Image) {
 	Image->Picture->Bitmap->Canvas->Pen->Width = penThickness;
 	int thicknessAdditive = penThickness * penThicknessMultiplier;
 
-	switch (paintMode) {
-		case PaintMode::ELLIPSE:
-			Image->Picture->Bitmap->Canvas->Ellipse(posX, posY, X, Y);
-			break;
-
-		case PaintMode::ERASER:
-			Image->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
-			Image->Picture->Bitmap->Canvas->Pen->Color = backgroundColor;
-			Image->Picture->Bitmap->Canvas->Ellipse(
-				X - thicknessAdditive,
-				Y - thicknessAdditive,
-				X + thicknessAdditive,
-				Y + thicknessAdditive
-			);
-			break;
-
-		case PaintMode::LINE:
-			Image->Picture->Bitmap->Canvas->MoveTo(posX, posY);
-			Image->Picture->Bitmap->Canvas->LineTo(X, Y);
-			break;
-
-		case PaintMode::RECTANGLE:
-			Image->Picture->Bitmap->Canvas->Rectangle(posX, posY, X, Y);
-			break;
-
-		case PaintMode::BRUSH:
-			Image->Picture->Bitmap->Canvas->Pen->Color = paintColor;
-			Image->Picture->Bitmap->Canvas->Ellipse(
-				X - thicknessAdditive,
-				Y - thicknessAdditive,
-				X + thicknessAdditive,
-				Y + thicknessAdditive
-			);
-			break;
-
-		case PaintMode::TEXT:
-			// TODO
- 			Image->Picture->Bitmap->Canvas->Font = font;
-			TRect tmpRect = TRect(posX, posY, X, Y);
-      Image->Picture->Bitmap->Canvas->Font = font;
-//      Image->Picture->Bitmap->Canvas->Font->Color = outlineColor;
-			Image->Picture->Bitmap->Canvas->TextRect(tmpRect, posX, posY, text);
-
-			break;
-
-//		case PaintMode::FILL:
-//      TColor colorToFill = Image->Picture->Bitmap->Canvas->Pixels[X][Y];
-//			Image->Picture->Bitmap->Canvas->FloodFill(X, Y, colorToFill, fsSurface);
-//			break;
-
+	if (paintMode == PaintMode::ELLIPSE) {
+		Image->Picture->Bitmap->Canvas->Ellipse(posX, posY, X, Y);
+	} 
+	
+	else if (paintMode == PaintMode::ERASER) {
+		Image->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
+		Image->Picture->Bitmap->Canvas->Pen->Color = backgroundColor;
+		Image->Picture->Bitmap->Canvas->Ellipse(
+			X - thicknessAdditive,
+			Y - thicknessAdditive,
+			X + thicknessAdditive,
+			Y + thicknessAdditive
+		);
 	}
+
+	else if (paintMode == PaintMode::LINE) {
+		Image->Picture->Bitmap->Canvas->MoveTo(posX, posY);
+		Image->Picture->Bitmap->Canvas->LineTo(X, Y);
+	}
+
+	else if (paintMode == PaintMode::RECTANGLE) {
+		Image->Picture->Bitmap->Canvas->Rectangle(posX, posY, X, Y);
+	}
+
+	else if (paintMode == PaintMode::BRUSH) {
+		Image->Picture->Bitmap->Canvas->Pen->Color = paintColor;
+		Image->Picture->Bitmap->Canvas->Ellipse(
+			X - thicknessAdditive,
+			Y - thicknessAdditive,
+			X + thicknessAdditive,
+			Y + thicknessAdditive
+		);
+	}
+
+	else if (paintMode == PaintMode::TEXT) {
+			// TODO
+		Image->Picture->Bitmap->Canvas->Font = font;
+		TRect tmpRect = TRect(posX, posY, X, Y);
+		Image->Picture->Bitmap->Canvas->Font = font;
+//      Image->Picture->Bitmap->Canvas->Font->Color = outlineColor;
+		Image->Picture->Bitmap->Canvas->TextRect(tmpRect, posX, posY, text);
+	}
+
+	else if (paintMode == PaintMode::FILL) {
+		TColor colorToFill = Image->Picture->Bitmap->Canvas->Pixels[X][Y];
+		Image->Picture->Bitmap->Canvas->FloodFill(X, Y, colorToFill, fsSurface);
+	}
+
 }
 
 void PaintState::onMouseDown(int X, int Y, TImage* CanvasImage, TImage* MainImage) {
@@ -132,7 +127,8 @@ void PaintState::onFormResize(TImage* CanvasImage, TImage* MainImage, TForm* Mai
 //void PaintState::setColors(TColor paintColorValue, TColor outlineColorValue) {
 //	paintColor = paintColorValue;
 //	outlineColor = outlineColorValue;
-//}
+//}
+
 
 void PaintState::setThickness(int thicknessValue) {
 	penThickness = thicknessValue;
@@ -168,7 +164,7 @@ void PaintState::fillGradient(TImage* Image) {
 }
 
 TColor PaintState::getBackgroundColor() {
-  return backgroundColor;
+	return backgroundColor;
 }
 
 #pragma package(smart_init)

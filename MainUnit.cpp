@@ -100,7 +100,8 @@ void __fastcall TMainForm::CanvasImageMouseUp(TObject *Sender, TMouseButton Butt
 //void __fastcall TMainForm::ColorGridChange(TObject *Sender)
 //{
 //	globalPaintState.setColors(ColorGrid->ForegroundColor, ColorGrid->BackgroundColor);
-//}
+//}
+
 //---------------------------------------------------------------------------
 
 
@@ -114,7 +115,8 @@ void __fastcall TMainForm::SetThicknessBarChange(TObject *Sender)
 //void __fastcall TMainForm::SelectBackgroundColorChange(TObject *Sender)
 //{
 //	globalPaintState.setBackgroundColor(SelectBackgroundColor->Selected, CanvasImage, MainImage);
-//}
+//}
+
 //---------------------------------------------------------------------------
 
 void __fastcall TMainForm::FormResize(TObject *Sender)

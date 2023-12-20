@@ -2,8 +2,8 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = #1043#1088#1072#1092#1080#1095#1077#1089#1082#1080#1081' '#1088#1077#1076#1072#1082#1090#1086#1088
-  ClientHeight = 509
-  ClientWidth = 603
+  ClientHeight = 508
+  ClientWidth = 577
   Color = clBtnFace
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -2188,20 +2188,20 @@ object MainForm: TMainForm
     OnMouseUp = CanvasImageMouseUp
   end
   object ToolPanel: TPanel
-    Left = 490
+    Left = 464
     Top = 0
     Width = 113
-    Height = 509
+    Height = 508
     Align = alRight
     BevelInner = bvSpace
     TabOrder = 0
-    ExplicitLeft = 484
-    ExplicitHeight = 501
+    ExplicitLeft = 471
+    ExplicitHeight = 499
     object ToolScrollBox: TScrollBox
       Left = 2
       Top = 2
       Width = 109
-      Height = 505
+      Height = 504
       HorzScrollBar.Smooth = True
       HorzScrollBar.Tracking = True
       VertScrollBar.Smooth = True
@@ -2210,6 +2210,7 @@ object MainForm: TMainForm
       Ctl3D = False
       ParentCtl3D = False
       TabOrder = 0
+      ExplicitHeight = 495
       object SelectBrush: TSpeedButton
         Left = 3
         Top = 111

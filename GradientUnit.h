@@ -32,6 +32,7 @@ __published:	// IDE-managed Components
 	TRadioButton *SelectHorizontalRadio;
 	TRadioButton *SelectVerticalRadio;
 	TButton *ApplyGradientButton;
+	TSpeedButton *SwitchColorsButton;
 	void __fastcall StartColorDialogShow(TObject *Sender);
 	void __fastcall EndColorDialogShow(TObject *Sender);
 	void __fastcall StartColorButtonClick(TObject *Sender);
@@ -40,6 +41,7 @@ __published:	// IDE-managed Components
 	void __fastcall SelectVerticalRadioClick(TObject *Sender);
 	void __fastcall FormResize(TObject *Sender);
 	void __fastcall ApplyGradientButtonClick(TObject *Sender);
+	void __fastcall SwitchColorsButtonClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TGradientForm(TComponent* Owner);

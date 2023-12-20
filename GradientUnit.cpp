@@ -83,3 +83,19 @@ void __fastcall TGradientForm::ApplyGradientButtonClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TGradientForm::SwitchColorsButtonClick(TObject *Sender)
+{
+	TColor tmp = globalPaintState.gradientStartColor;
+	globalPaintState.gradientStartColor = globalPaintState.gradientEndColor;
+	globalPaintState.gradientEndColor = tmp;
+
+	StartColorPanel->Color = globalPaintState.gradientStartColor;
+	StartColorDialog->Color = globalPaintState.gradientStartColor;
+
+	EndColorPanel->Color = globalPaintState.gradientEndColor;
+	EndColorDialog->Color = globalPaintState.gradientEndColor;
+
+	globalPaintState.fillGradient(GradientPreviewImage);
+}
+//---------------------------------------------------------------------------
+
