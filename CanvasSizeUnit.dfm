@@ -2,8 +2,8 @@ object CanvasSizeForm: TCanvasSizeForm
   Left = 0
   Top = 0
   Caption = #1061#1086#1083#1089#1090
-  ClientHeight = 140
-  ClientWidth = 228
+  ClientHeight = 131
+  ClientWidth = 222
   Color = clBtnFace
   Constraints.MaxHeight = 200
   Constraints.MaxWidth = 500
@@ -14,10 +14,12 @@ object CanvasSizeForm: TCanvasSizeForm
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  KeyPreview = True
+  OnKeyPress = FormKeyPress
   OnShow = FormShow
   DesignSize = (
-    228
-    140)
+    222
+    131)
   TextHeight = 15
   object WidthLabel: TLabel
     Left = 10
@@ -48,7 +50,7 @@ object CanvasSizeForm: TCanvasSizeForm
   object WidthEdit: TEdit
     Left = 90
     Top = 8
-    Width = 124
+    Width = 100
     Height = 31
     Anchors = [akLeft, akTop, akRight]
     Font.Charset = DEFAULT_CHARSET
@@ -56,15 +58,16 @@ object CanvasSizeForm: TCanvasSizeForm
     Font.Height = -17
     Font.Name = 'Segoe UI'
     Font.Style = []
+    NumbersOnly = True
     ParentFont = False
     TabOrder = 0
     OnKeyPress = WidthEditKeyPress
-    ExplicitWidth = 118
+    ExplicitWidth = 106
   end
   object HeightEdit: TEdit
     Left = 90
     Top = 50
-    Width = 124
+    Width = 100
     Height = 31
     Anchors = [akLeft, akTop, akRight]
     Font.Charset = DEFAULT_CHARSET
@@ -72,15 +75,16 @@ object CanvasSizeForm: TCanvasSizeForm
     Font.Height = -17
     Font.Name = 'Segoe UI'
     Font.Style = []
+    NumbersOnly = True
     ParentFont = False
     TabOrder = 1
     OnKeyPress = HeightEditKeyPress
-    ExplicitWidth = 118
+    ExplicitWidth = 106
   end
   object SetCanvasSizeButton: TButton
     Left = 144
-    Top = 100
-    Width = 68
+    Top = 82
+    Width = 44
     Height = 35
     Anchors = [akLeft, akRight, akBottom]
     Caption = 'OK'
@@ -92,7 +96,6 @@ object CanvasSizeForm: TCanvasSizeForm
     ParentFont = False
     TabOrder = 2
     OnClick = SetCanvasSizeButtonClick
-    ExplicitTop = 91
-    ExplicitWidth = 62
+    ExplicitWidth = 50
   end
 end

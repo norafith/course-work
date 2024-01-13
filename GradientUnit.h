@@ -1,8 +1,6 @@
-//---------------------------------------------------------------------------
-
 #ifndef GradientUnitH
 #define GradientUnitH
-//---------------------------------------------------------------------------
+
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -14,21 +12,21 @@
 
 #include "PaintUtils.h"
 #include "MainUnit.h"
-//---------------------------------------------------------------------------
+
 class TGradientForm : public TForm
 {
 __published:	// IDE-managed Components
 	TImage *GradientPreviewImage;
 	TPanel *GradientToolsPanel;
-	TLabel *Label1;
-	TLabel *Label2;
+	TLabel *StartColorLabel;
+	TLabel *EndColorLabel;
 	TColorDialog *StartColorDialog;
 	TColorDialog *EndColorDialog;
 	TPanel *StartColorPanel;
 	TSpeedButton *StartColorButton;
 	TPanel *EndColorPanel;
 	TSpeedButton *EndColorButton;
-	TRadioGroup *RadioGroup1;
+	TRadioGroup *GradDirectionGroup;
 	TRadioButton *SelectHorizontalRadio;
 	TRadioButton *SelectVerticalRadio;
 	TButton *ApplyGradientButton;
@@ -42,11 +40,12 @@ __published:	// IDE-managed Components
 	void __fastcall FormResize(TObject *Sender);
 	void __fastcall ApplyGradientButtonClick(TObject *Sender);
 	void __fastcall SwitchColorsButtonClick(TObject *Sender);
+	void __fastcall FormKeyPress(TObject *Sender, System::WideChar &Key);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TGradientForm(TComponent* Owner);
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TGradientForm *GradientForm;
-//---------------------------------------------------------------------------
+
 #endif

@@ -3,7 +3,7 @@ object GradientForm: TGradientForm
   Top = 0
   Caption = #1043#1088#1072#1076#1080#1077#1085#1090
   ClientHeight = 402
-  ClientWidth = 324
+  ClientWidth = 351
   Color = clBtnFace
   Constraints.MinHeight = 428
   Constraints.MinWidth = 323
@@ -12,15 +12,17 @@ object GradientForm: TGradientForm
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  KeyPreview = True
+  OnKeyPress = FormKeyPress
   OnResize = FormResize
   DesignSize = (
-    324
+    351
     402)
   TextHeight = 15
   object GradientPreviewImage: TImage
     Left = 8
     Top = 24
-    Width = 296
+    Width = 305
     Height = 153
     Anchors = [akLeft, akTop, akRight]
     ExplicitWidth = 307
@@ -28,16 +30,16 @@ object GradientForm: TGradientForm
   object GradientToolsPanel: TPanel
     Left = 8
     Top = 192
-    Width = 296
+    Width = 305
     Height = 202
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
-    ExplicitWidth = 289
-    ExplicitHeight = 183
+    ExplicitWidth = 274
+    ExplicitHeight = 193
     DesignSize = (
-      296
+      305
       202)
-    object Label1: TLabel
+    object StartColorLabel: TLabel
       Left = 10
       Top = 8
       Width = 139
@@ -50,7 +52,7 @@ object GradientForm: TGradientForm
       Font.Style = []
       ParentFont = False
     end
-    object Label2: TLabel
+    object EndColorLabel: TLabel
       Left = 10
       Top = 37
       Width = 130
@@ -117,17 +119,17 @@ object GradientForm: TGradientForm
     object StartColorPanel: TPanel
       Left = 192
       Top = 9
-      Width = 97
+      Width = 106
       Height = 22
       Anchors = [akLeft, akTop, akRight]
       Color = clWhite
       ParentBackground = False
       TabOrder = 0
-      ExplicitWidth = 96
+      ExplicitWidth = 75
       object StartColorButton: TSpeedButton
         Left = 1
         Top = 1
-        Width = 95
+        Width = 104
         Height = 20
         Align = alClient
         DisabledImageName = 'StartColorButton'
@@ -140,17 +142,17 @@ object GradientForm: TGradientForm
     object EndColorPanel: TPanel
       Left = 192
       Top = 38
-      Width = 96
+      Width = 105
       Height = 20
       Anchors = [akLeft, akTop, akRight]
       Color = clWhite
       ParentBackground = False
       TabOrder = 1
-      ExplicitWidth = 95
+      ExplicitWidth = 74
       object EndColorButton: TSpeedButton
         Left = 1
         Top = 1
-        Width = 94
+        Width = 103
         Height = 18
         Align = alClient
         Flat = True
@@ -158,14 +160,14 @@ object GradientForm: TGradientForm
         ExplicitWidth = 112
       end
     end
-    object RadioGroup1: TRadioGroup
+    object GradDirectionGroup: TRadioGroup
       Left = 10
       Top = 66
-      Width = 279
+      Width = 288
       Height = 87
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 2
-      ExplicitWidth = 278
+      ExplicitWidth = 257
     end
     object SelectHorizontalRadio: TRadioButton
       Left = 16
@@ -202,13 +204,13 @@ object GradientForm: TGradientForm
     object ApplyGradientButton: TButton
       Left = 219
       Top = 163
-      Width = 70
+      Width = 79
       Height = 25
       Anchors = [akLeft, akTop, akRight]
       Caption = 'OK'
       TabOrder = 5
       OnClick = ApplyGradientButtonClick
-      ExplicitWidth = 69
+      ExplicitWidth = 48
     end
   end
   object StartColorDialog: TColorDialog

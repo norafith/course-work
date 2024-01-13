@@ -1,14 +1,12 @@
-//---------------------------------------------------------------------------
-
 #include <vcl.h>
 #pragma hdrstop
 #include <tchar.h>
-//---------------------------------------------------------------------------
+
 USEFORM("MainUnit.cpp", MainForm);
 USEFORM("DrawTextUnit.cpp", DrawTextForm);
 USEFORM("GradientUnit.cpp", GradientForm);
 USEFORM("CanvasSizeUnit.cpp", CanvasSizeForm);
-//---------------------------------------------------------------------------
+
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
 	try
@@ -39,4 +37,4 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	}
 	return 0;
 }
-//---------------------------------------------------------------------------
+

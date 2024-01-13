@@ -1,8 +1,6 @@
-//---------------------------------------------------------------------------
-
 #ifndef MainUnitH
 #define MainUnitH
-//---------------------------------------------------------------------------
+
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
@@ -25,7 +23,6 @@
 #include "DrawTextUnit.h"
 #include "CanvasSizeUnit.h"
 
-//---------------------------------------------------------------------------
 class TMainForm : public TForm
 {
 __published:	// IDE-managed Components
@@ -64,6 +61,9 @@ __published:	// IDE-managed Components
 	TSpeedButton *SelectText;
 	TTrackBar *SetThicknessBar;
 	TLabel *ThicknessLabel;
+	TMenuItem *SaveMenuItem;
+	TMenuItem *CloseMenuItem;
+	TMenuItem *NewMenuItem;
 	void __fastcall SelectCircleClick(TObject *Sender);
 	void __fastcall SaveAsMenuItemClick(TObject *Sender);
 	void __fastcall OpenFileMenuItemClick(TObject *Sender);
@@ -91,14 +91,17 @@ __published:	// IDE-managed Components
 	void __fastcall OutlineColorButtonClick(TObject *Sender);
 	void __fastcall BackgroundColorDialogShow(TObject *Sender);
 	void __fastcall BackgroundColorButtonClick(TObject *Sender);
+	void __fastcall SaveMenuItemClick(TObject *Sender);
+	void __fastcall FormCloseQuery(TObject *Sender, bool &CanClose);
+	void __fastcall CloseMenuItemClick(TObject *Sender);
+	void __fastcall NewMenuItemClick(TObject *Sender);
 private:	// User declarations
+	void removePaintButtonsSelectedFocus();
+  void initializeImagesBitmap();
 public:		// User declarations
-//	FileHandler globalFileHandler;
-//	PaintState globalPaintState;
 	__fastcall TMainForm(TComponent* Owner);
 };
-//---------------------------------------------------------------------------
+
 extern PACKAGE TMainForm *MainForm;
 
-//---------------------------------------------------------------------------
 #endif

@@ -2,8 +2,8 @@ object MainForm: TMainForm
   Left = 0
   Top = 0
   Caption = #1043#1088#1072#1092#1080#1095#1077#1089#1082#1080#1081' '#1088#1077#1076#1072#1082#1090#1086#1088
-  ClientHeight = 508
-  ClientWidth = 577
+  ClientHeight = 511
+  ClientWidth = 605
   Color = clBtnFace
   DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
@@ -2127,6 +2127,7 @@ object MainForm: TMainForm
     0000000000000000000007FFFFFFFFFC0000000000000000000003FFFFFFFFFF
     0000000000000000000001FFFFFFFFFFE000000000000000000000FFFFFF}
   Menu = MainMenu
+  OnCloseQuery = FormCloseQuery
   OnResize = FormResize
   TextHeight = 15
   object MainImage: TImage
@@ -2179,29 +2180,29 @@ object MainForm: TMainForm
       82}
   end
   object CanvasImage: TImage
-    Left = -5
+    Left = 0
     Top = 0
-    Width = 496
+    Width = 490
     Height = 512
     OnMouseDown = CanvasImageMouseDown
     OnMouseMove = CanvasImageMouseMove
     OnMouseUp = CanvasImageMouseUp
   end
   object ToolPanel: TPanel
-    Left = 464
+    Left = 492
     Top = 0
     Width = 113
-    Height = 508
+    Height = 511
     Align = alRight
     BevelInner = bvSpace
     TabOrder = 0
-    ExplicitLeft = 471
-    ExplicitHeight = 499
+    ExplicitLeft = 486
+    ExplicitHeight = 502
     object ToolScrollBox: TScrollBox
       Left = 2
       Top = 2
       Width = 109
-      Height = 504
+      Height = 507
       HorzScrollBar.Smooth = True
       HorzScrollBar.Tracking = True
       VertScrollBar.Smooth = True
@@ -2210,13 +2211,14 @@ object MainForm: TMainForm
       Ctl3D = False
       ParentCtl3D = False
       TabOrder = 0
-      ExplicitHeight = 495
+      ExplicitHeight = 498
       object SelectBrush: TSpeedButton
         Left = 3
         Top = 111
         Width = 50
         Height = 50
         Hint = #1050#1080#1089#1090#1100
+        Flat = True
         Glyph.Data = {
           520E0000424D520E00000000000042000000280000001E0000001E0000000100
           200003000000100E0000C30E0000C30E000000000000000000000000FF0000FF
@@ -2346,6 +2348,7 @@ object MainForm: TMainForm
         Hint = #1050#1088#1091#1075
         ParentCustomHint = False
         DisabledImageName = 'SpeedButton1'
+        Flat = True
         Glyph.Data = {
           520E0000424D520E00000000000042000000280000001E0000001E0000000100
           200003000000100E0000C30E0000C30E000000000000000000000000FF0000FF
@@ -2473,6 +2476,7 @@ object MainForm: TMainForm
         Width = 50
         Height = 50
         Hint = #1051#1072#1089#1090#1080#1082
+        Flat = True
         Glyph.Data = {
           520E0000424D520E00000000000042000000280000001E0000001E0000000100
           200003000000100E0000C30E0000C30E000000000000000000000000FF0000FF
@@ -2639,6 +2643,7 @@ object MainForm: TMainForm
         Width = 50
         Height = 50
         Hint = #1047#1072#1083#1080#1074#1082#1072
+        Flat = True
         Glyph.Data = {
           520E0000424D520E00000000000042000000280000001E0000001E0000000100
           200003000000100E0000C30E0000C30E000000000000000000000000FF0000FF
@@ -2763,6 +2768,7 @@ object MainForm: TMainForm
         Width = 50
         Height = 50
         Hint = #1051#1080#1085#1080#1103
+        Flat = True
         Glyph.Data = {
           520E0000424D520E00000000000042000000280000001E0000001E0000000100
           200003000000100E0000C30E0000C30E000000000000000000000000FF0000FF
@@ -2890,6 +2896,7 @@ object MainForm: TMainForm
         Width = 50
         Height = 50
         Hint = #1055#1088#1103#1084#1086#1091#1075#1086#1083#1100#1085#1080#1082
+        Flat = True
         Glyph.Data = {
           520E0000424D520E00000000000042000000280000001E0000001E0000000100
           200003000000100E0000C30E0000C30E000000000000000000000000FF0000FF
@@ -3016,6 +3023,7 @@ object MainForm: TMainForm
         Top = 159
         Width = 50
         Height = 50
+        Flat = True
         Glyph.Data = {
           42190000424D4219000000000000420000002800000028000000280000000100
           20000300000000190000C30E0000C30E000000000000000000000000FF0000FF
@@ -3326,19 +3334,36 @@ object MainForm: TMainForm
     Top = 368
     object FileMenu: TMenuItem
       Caption = #1060#1072#1081#1083
+      object NewMenuItem: TMenuItem
+        Caption = #1057#1086#1079#1076#1072#1090#1100'...'
+        ShortCut = 16462
+        OnClick = NewMenuItemClick
+      end
+      object SaveMenuItem: TMenuItem
+        Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100
+        ShortCut = 16467
+        OnClick = SaveMenuItemClick
+      end
       object SaveAsMenuItem: TMenuItem
         Caption = #1057#1086#1093#1088#1072#1085#1080#1090#1100' '#1082#1072#1082'...'
+        ShortCut = 49235
         OnClick = SaveAsMenuItemClick
       end
       object OpenFileMenuItem: TMenuItem
         Caption = #1054#1090#1082#1088#1099#1090#1100'...'
         ImageName = 'OpenFileMenuItem'
+        ShortCut = 16463
         OnClick = OpenFileMenuItemClick
       end
       object ShouldResizeImageMenuItem: TMenuItem
         Caption = #1055#1086#1076#1075#1086#1085#1103#1090#1100' '#1088#1072#1079#1084#1077#1088#1099' '#1080#1079#1086#1073#1088#1072#1078#1077#1085#1080#1103' '#1087#1086#1076' '#1088#1072#1079#1084#1077#1088#1099' '#1093#1086#1083#1089#1090#1072
         Checked = True
         OnClick = ShouldResizeImageMenuItemClick
+      end
+      object CloseMenuItem: TMenuItem
+        Caption = #1047#1072#1082#1088#1099#1090#1100'...'
+        ShortCut = 16465
+        OnClick = CloseMenuItemClick
       end
     end
     object CanvasMenu: TMenuItem
@@ -3354,14 +3379,18 @@ object MainForm: TMainForm
       'Portable Network Graphics (*.png)|*.png|JPEG Image File (*.jpg)|' +
       '*.jpg|JPEG Image File (*.jpeg)|*.jpeg|GIF Image (*.gif)|*.gif|Bi' +
       'tmaps (*.bmp)|*.bmp|Custom'
+    Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
+    OnTypeChange = SaveImageDialogTypeChange
     Left = 376
     Top = 352
   end
   object OpenImageDialog: TOpenPictureDialog
+    DefaultExt = 'png'
     Filter = 
       'All images|*.gif;*.jpg;*.jpeg;*.png;*.bmp|GIF Image (*.gif)|*.gi' +
       'f|JPEG Image File (*.jpg)|*.jpg|JPEG Image File (*.jpeg)|*.jpeg|' +
       'Portable Network Graphics (*.png)|*.png|Bitmaps (*.bmp)|*.bmp'
+    Options = [ofHideReadOnly, ofPathMustExist, ofFileMustExist, ofEnableSizing]
     Left = 408
     Top = 312
   end

@@ -1,5 +1,3 @@
-//---------------------------------------------------------------------------
-
 #pragma hdrstop
 
 #include "FileHandlingUtils.h"
@@ -10,6 +8,7 @@
 #include <Vcl.GraphUtil.hpp>
 #include "MainUnit.h"
 
+// объ€вление глобального объекта обработки файлов
 FileHandler globalFileHandler;
 
 void FileHandler::setSelectedExtension(TSavePictureDialog* SaveMainImageDialog) {
@@ -35,9 +34,17 @@ void FileHandler::setSelectedExtension(TSavePictureDialog* SaveMainImageDialog) 
 	}
 }
 
-void FileHandler::saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* MainImage) {
-			if (!SaveMainImageDialog->Execute()) return;
-			SaveMainImageDialog->FileName += selectedExtension;
+void FileHandler::saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* MainImage, bool executeDialog) {
+			if (
+				(executeDialog || !SaveMainImageDialog->FileName.Length()) &&
+				!SaveMainImageDialog->Execute()
+			) {
+        return;
+			}
+
+			if (Ioutils::TPath::GetExtension(SaveMainImageDialog->FileName).IsEmpty()) {
+				SaveMainImageDialog->FileName += selectedExtension;
+			}
 			String fileExtension = Ioutils::TPath::GetExtension(SaveMainImageDialog->FileName);
 
 			if (fileExtension == L".jpeg" || fileExtension == L".jpg") {
@@ -55,8 +62,7 @@ void FileHandler::saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* Ma
 			else if (fileExtension == L".bmp") {
 				MainImage->Picture->SaveToFile(SaveMainImageDialog->FileName);
 			}
-
-			else { // .png or other
+			else { // .png или другое
 				TPngImage* TmpPng = new TPngImage;
 				TmpPng->Assign(MainImage->Picture->Graphic);
 				TmpPng->SaveToFile(SaveMainImageDialog->FileName);
@@ -64,7 +70,9 @@ void FileHandler::saveCanvas(TSavePictureDialog* SaveMainImageDialog, TImage* Ma
 			}
 		}
 
-int FileHandler::loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* MainImage, TImage* CanvasImage) {
+int FileHandler::loadImage(TSavePictureDialog* SaveMainImageDialog, TOpenPictureDialog* OpenMainImageDialog, TImage* MainImage, TImage* CanvasImage) {
+	// если код возврата не 0, возникла ошибка
+
 	if (!OpenMainImageDialog->Execute()) return 0;
 
 	try {
@@ -94,10 +102,14 @@ int FileHandler::loadImage(TSavePictureDialog* OpenMainImageDialog, TImage* Main
 			MainImage->Picture->Bitmap->Assign(tmpBitmap);
 			CanvasImage->Picture->Bitmap->Assign(tmpBitmap);
 
+			MainImage->Picture->Bitmap->AlphaFormat = afIgnored;
+			CanvasImage->Picture->Bitmap->AlphaFormat = afIgnored;
+
 			tmpBitmap->Free();
 		}
 
-    return 0;
+		SaveMainImageDialog->FileName = OpenMainImageDialog->FileName;
+		return 0;
 	}
 	catch (...) {
     return -1;
@@ -108,5 +120,4 @@ void FileHandler::setShouldResizeImage(bool value) {
 	shouldResizeImage = value;
 }
 
-//---------------------------------------------------------------------------
 #pragma package(smart_init)

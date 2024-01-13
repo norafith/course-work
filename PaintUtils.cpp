@@ -2,12 +2,16 @@
 
 #include "PaintUtils.h"
 
+// объ€вление глобального объекта состо€ни€ рисовани€
 PaintState globalPaintState;
 
 void PaintState::draw(int X, int Y, TImage* Image) {
 	Image->Picture->Bitmap->Canvas->Brush->Color = paintColor;
 	Image->Picture->Bitmap->Canvas->Pen->Color = outlineColor;
 	Image->Picture->Bitmap->Canvas->Pen->Width = penThickness;
+	// т. к. значение в слайдере изменени€ толщины слишком мало,
+	// мы умножим его на заранее определенный коэффициент,
+  // чтобы получить значение, которым можно задать ширину в пиксел€х
 	int thicknessAdditive = penThickness * penThicknessMultiplier;
 
 	if (paintMode == PaintMode::ELLIPSE) {
@@ -45,11 +49,9 @@ void PaintState::draw(int X, int Y, TImage* Image) {
 	}
 
 	else if (paintMode == PaintMode::TEXT) {
-			// TODO
 		Image->Picture->Bitmap->Canvas->Font = font;
 		TRect tmpRect = TRect(posX, posY, X, Y);
 		Image->Picture->Bitmap->Canvas->Font = font;
-//      Image->Picture->Bitmap->Canvas->Font->Color = outlineColor;
 		Image->Picture->Bitmap->Canvas->TextRect(tmpRect, posX, posY, text);
 	}
 
@@ -62,18 +64,13 @@ void PaintState::draw(int X, int Y, TImage* Image) {
 
 void PaintState::onMouseDown(int X, int Y, TImage* CanvasImage, TImage* MainImage) {
 	if (paintMode == PaintMode::FILL) {
-    draw(X, Y, CanvasImage);
+		draw(X, Y, CanvasImage);
 		draw(X, Y, MainImage);
-    return;
+		return;
 	}
 	isDrawing = true;
 	posX = X;
 	posY = Y;
-//
-//	if (paintMode == PaintMode::BRUSH || paintMode == PaintMode::ERASER) {
-//		draw(X, Y, MainImage);
-//	}
-
 }
 
 void PaintState::onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImage) {
@@ -82,10 +79,6 @@ void PaintState::onMouseMove(int X, int Y, TImage* CanvasImage, TImage* MainImag
 	if (paintMode == PaintMode::BRUSH || paintMode == PaintMode::ERASER) {
 		draw(X, Y, MainImage);
 	}
-//
-//	TRect tmpRect = Rect(Point(posX, posY), Point(X, Y));
-//	CanvasImage->Picture->Bitmap->Canvas->CopyRect(tmpRect, CanvasImage->Picture->Bitmap->Canvas, tmpRect);
-//	draw(X, Y, CanvasImage);
 
 	CanvasImage->Picture->Bitmap->Assign(MainImage->Picture->Bitmap);
 	draw(X, Y, CanvasImage);
@@ -98,8 +91,6 @@ void PaintState::onMouseUp(int X, int Y, TImage* CanvasImage, TImage* MainImage)
 		isDrawing = false;
 		return;
 	}
-
-
 
 	draw(X, Y, MainImage);
   CanvasImage->Picture->Bitmap->Assign(MainImage->Picture->Bitmap);
@@ -122,20 +113,13 @@ void PaintState::onFormResize(TImage* CanvasImage, TImage* MainImage, TForm* Mai
 	CanvasImage->Picture->Bitmap->Height = MainForm->ClientHeight;
 	CanvasImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
 	MainImage->Picture->Bitmap->Canvas->Brush->Color = paintColor;
- }
-
-//void PaintState::setColors(TColor paintColorValue, TColor outlineColorValue) {
-//	paintColor = paintColorValue;
-//	outlineColor = outlineColorValue;
-//}
-
+}
 
 void PaintState::setThickness(int thicknessValue) {
 	penThickness = thicknessValue;
 }
 
 void PaintState::setBackgroundColor(TColor backgroundColorValue, TImage* CanvasImage, TImage* MainImage) {
-//  backgroundMode = BackgroundMode::COLOR;
 	backgroundColor = backgroundColorValue;
 	MainImage->Picture->Bitmap->Canvas->Brush->Color = backgroundColor;
 	MainImage->Picture->Bitmap->Canvas->Rectangle(0, 0, MainImage->Width, MainImage->Height);
@@ -146,10 +130,6 @@ void PaintState::setBackgroundColor(TColor backgroundColorValue, TImage* CanvasI
 void PaintState::setFont(TFont* fontValue) {
   font = fontValue;
 };
-
-void PaintState::setText(String textValue) {
-  text = textValue;
-}
 
 void PaintState::fillGradient(TImage* Image) {
 	GradientFillCanvas(
@@ -165,6 +145,13 @@ void PaintState::fillGradient(TImage* Image) {
 
 TColor PaintState::getBackgroundColor() {
 	return backgroundColor;
+}
+
+void PaintState::resetState(PaintState& currentState) {
+	currentState.font->Free();
+  currentState.font = new TFont();
+  currentState.text = L"";
+	currentState = PaintState();
 }
 
 #pragma package(smart_init)
